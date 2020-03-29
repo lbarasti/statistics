@@ -1,6 +1,9 @@
+![Build Status](https://github.com/lbarasti/statistics/workflows/build/badge.svg)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 # statistics
 
-TODO: Write a description here
+A statistical library to perform descriptive statistics and generate random values based on popular probability distributions.
 
 ## Installation
 
@@ -66,6 +69,7 @@ This shard is a work in progress. Everyone's contribution is welcome.
 
 The guiding principle at this stage is
 > make it work before you make it right
+
 Which in this context means: let's not focus on benchmarks and performance, but rather on usability and correctness.
 
 ## Contributing
