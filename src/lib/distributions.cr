@@ -2,16 +2,17 @@ module Statistics
   module Distributions
     class Constant
       property rand
+
       def initialize(@rand : Float64)
       end
     end
-    
+
     class Exponential
       # https://en.wikipedia.org/wiki/Inverse_transform_sampling
       # https://stackoverflow.com/questions/2106503/pseudorandom-number-generator-exponential-distribution/2106564
       def initialize(@lambda : Float64)
       end
-    
+
       def rand
         Math.log(1 - ::rand) / -@lambda
       end
@@ -20,9 +21,10 @@ module Statistics
     class Normal
       # https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform
       TWO_PI = 2 * Math::PI
+
       def initialize(@mean : Float64, @std : Float64)
       end
-    
+
       def rand
         v = Math.sqrt(-2 * Math.log(::rand)) * Math.sin(TWO_PI * ::rand)
         (v * @std + @mean).to_f32
@@ -35,7 +37,7 @@ module Statistics
       # https://www.johndcook.com/blog/2010/06/14/generating-poisson-random-values/
       def initialize(@lambda : Float64)
       end
-    
+
       def rand
         x = 0
         p = Math.exp(-@lambda)
@@ -52,9 +54,11 @@ module Statistics
 
     class Uniform
       @interval : Float64
+
       def initialize(@min : Float64, max : Float64)
         @interval = max - @min
       end
+
       def rand
         @min + ::rand * @interval
       end

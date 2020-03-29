@@ -11,7 +11,7 @@ describe Constant do
     gen = Constant.new(const)
 
     values = sample_size.times.map { gen.rand }.to_a
-    
+
     mean(values).should eq const
     var(values).should eq 0
   end
@@ -23,7 +23,7 @@ describe Exponential do
     gen = Exponential.new(lambda)
 
     values = sample_size.times.map { gen.rand }.to_a.sort
-    
+
     (mean(values) / (1 / lambda)).should be_close(1, tolerance)
     (var(values) / (1 / lambda**2)).should be_close(1, tolerance)
   end
@@ -35,7 +35,7 @@ describe Normal do
     gen = Normal.new(m, std)
 
     values = sample_size.times.map { gen.rand }.to_a.sort
-    
+
     (mean(values) / m).should be_close(1, tolerance)
     (var(values) / std**2).should be_close(1, tolerance)
   end
@@ -47,7 +47,7 @@ describe Poisson do
     gen = Poisson.new(lambda)
 
     values = sample_size.times.map { gen.rand }.to_a.sort
-    
+
     (mean(values) / lambda).should be_close(1, tolerance)
     (var(values) / lambda).should be_close(1, tolerance)
   end
@@ -62,7 +62,7 @@ describe Uniform do
 
     (values.max < max).should be_true
     (values.min > min).should be_true
-    
+
     m = 0.5 * (max + min)
     var = 1/12 * (max - min) * (max - min)
 
