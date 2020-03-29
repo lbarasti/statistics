@@ -3,7 +3,7 @@ include Statistics
 include Statistics::Distributions
 
 tolerance = 0.05 # TODO: adjust this to avoid intermittent failures
-sample_size = 1000
+sample_size = 10000
 
 describe Constant do
   it "generates the given number, over and over again" do

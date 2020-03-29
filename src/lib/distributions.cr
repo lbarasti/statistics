@@ -27,7 +27,7 @@ module Statistics
 
       def rand
         v = Math.sqrt(-2 * Math.log(::rand)) * Math.sin(TWO_PI * ::rand)
-        (v * @std + @mean).to_f32
+        v * @std + @mean
       end
     end
 
