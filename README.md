@@ -21,7 +21,17 @@ require "statistics"
 ```
 
 ### Descriptive statistics
-TODO
+You can compute mean, variance and standard deviation of a collection as follows.
+```crystal
+include Statistics
+
+x = [1, 10, 7]
+mean(x) # 6
+var(x) # 14
+var(x, corrected: true) # 21
+var(x, population_mean: 8) # 18.0
+std(x) # 3.7416...
+```
 
 ### Sampling
 To work with distributions, import the `Distributions` namespace as follows.
