@@ -119,6 +119,8 @@ module Statistics
   # - `values`: a one-dimensional dataset.
   # - `p`: probability. Values of `p` should be in the interval `[0, 1]`.
   # - `sorted` indicates whether `values` can be assumed to be sorted.
+  #
+  # Implementation based on Julia's [Statistics.quantile](https://docs.julialang.org/en/v1/stdlib/Statistics/#Statistics.quantile).
   def quantile(values, p, sorted = false)
     sorted_values = sorted ? values : values.sort
     n = values.size

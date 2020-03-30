@@ -75,7 +75,12 @@ Which in this context means: let's not focus on benchmarks and performance, but 
 ## References
 * [numpy.random](https://numpy.org/devdocs/reference/random/generator.html): distributions and random sampling
 * [numpy statistics](https://numpy.org/devdocs/reference/routines.statistics.html#averages-and-variances): order statistics, averages and variances
+* [scipy stats](https://github.com/scipy/scipy/blob/3de0d58/scipy/stats/stats.py) module and related [tests](https://github.com/scipy/scipy/blob/1150c4c033899a5a4556b7d34d6b137352b36b9e/scipy/stats/tests/test_stats.py) tests
+* [julia random](https://docs.julialang.org/en/v1/stdlib/Random/) module
 * [julia statistics](https://docs.julialang.org/en/v1/stdlib/Statistics/#Statistics.std) module
+* [julia distributions](https://juliastats.org/Distributions.jl/latest/starting/) package.
+* on [skewness and kurtosis](https://brownmath.com/stat/shape.htm), by Stan Brown
+* more on [skewness and kurtosis](https://www.itl.nist.gov/div898/handbook/eda/section3/eda35b.htm), from NIST.
 
 ## Contributing
 
