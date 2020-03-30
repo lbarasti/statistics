@@ -32,7 +32,7 @@ x = [1, 10, 7]
 mean(x) # 6
 var(x) # 14
 var(x, corrected: true) # 21
-var(x, population_mean: 8) # 18.0
+var(x, mean: 8) # 18.0
 std(x) # 3.7416...
 ```
 
@@ -75,6 +75,8 @@ Which in this context means: let's not focus on benchmarks and performance, but 
 ## References
 * [numpy.random](https://numpy.org/devdocs/reference/random/generator.html): distributions and random sampling
 * [numpy statistics](https://numpy.org/devdocs/reference/routines.statistics.html#averages-and-variances): order statistics, averages and variances
+* [julia statistics](https://docs.julialang.org/en/v1/stdlib/Statistics/#Statistics.std) module
+
 ## Contributing
 
 1. Fork it (<https://github.com/lbarasti/statistics/fork>)

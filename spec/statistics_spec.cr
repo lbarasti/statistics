@@ -13,7 +13,7 @@ describe Statistics do
     mean(x).should eq expected_mean
     var(x).should eq expected_var
     var(x, corrected: true).should eq expected_var_corrected
-    var(x, population_mean: 8).should eq expected_varp
+    var(x, mean: 8).should eq expected_varp
     std(x).should eq Math.sqrt(var(x))
   end
 
