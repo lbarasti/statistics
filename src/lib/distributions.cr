@@ -14,7 +14,7 @@ module Statistics
       end
 
       def rand
-        Math.log(1 - ::rand) / -@lambda
+        -Math.log(::rand) / @lambda
       end
     end
 
