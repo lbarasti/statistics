@@ -23,7 +23,8 @@ module Statistics
       min:      sorted.first,
       max:      sorted.last,
       q1:       sorted[size//4],
-      median:   sorted[size//2],
+      median:   median(sorted, sorted: true),
+      middle:   middle(sorted),
       q3:       sorted[size//4*3],
     }
   end
@@ -57,6 +58,44 @@ module Statistics
   # - `values`: a one-dimensional dataset.
   def mean(values)
     values.reduce(0) { |acc, v| acc + v } / values.size
+  end
+
+  # Computes the median of all elements in a dataset. For an even number of
+  # elements the mean of the two median elements will be computed.
+  #
+  # Parameters
+  # - `values`: a one-dimensional dataset.
+  # - `sorted`: when `true`, the computations assume that the provided values are
+  #   sorted. Default is `false`.
+  #
+  # See Julia's [Statistics.median](https://docs.julialang.org/en/v1/stdlib/Statistics/#Statistics.median).
+  def median(values, sorted = false)
+    size = values.size
+    mid = size // 2
+    sorted_values = sorted ? values : values.sort
+
+    if size.odd?
+      sorted_values[mid]
+    else
+      middle([sorted_values[mid - 1], sorted_values[mid]])
+    end
+  end
+
+  # Computes the middle of an array `a`, which consists of finding its
+  # extrema and then computing their mean.
+  #
+  # Parameters
+  # - `values`: a one-dimensional dataset.
+  #
+  # See Julia's [Statistics.middle](https://docs.julialang.org/en/v1/stdlib/Statistics/#Statistics.middle).
+  def middle(values)
+    min, max = values.minmax
+    middle(min, max)
+  end
+
+  # Computes the middle of two values `a` and `b`.
+  def middle(a, b)
+    0.5 * (a + b)
   end
 
   # Calculates the n-th moment about the mean for a sample.

@@ -49,4 +49,24 @@ describe Statistics do
 
     kurtosis([1, 2, 3, 4]).should eq 1.64
   end
+
+  it "can compute the middle of a sample" do
+    middle([2.3]).should eq 2.3
+    middle([2.6, 3.4]).should eq 3.0
+    middle([5.5, 1.2, 5.5]).should eq middle([1.2, 5.5])
+    # From https://github.com/JuliaLang/Statistics.jl/blob/master/src/Statistics.jl#L750
+    middle([1, 2, 3.6, 10.9]).should eq 5.95
+  end
+
+  it "can compute the median of a sample" do
+    median([2.3]).should eq 2.3
+    median([2.6, 3.4]).should eq 3.0
+    median([5.5, 1.2, 5.5]).should eq 5.5
+    median([5.5, 1.2, 5.5, 3.5, 10.2, 5.5]).should eq 5.5
+    # From https://github.com/JuliaLang/Statistics.jl/blob/master/src/Statistics.jl#L750
+    median([1, 2, 3.6, 10.9]).should eq middle(2, 3.6)
+
+    median((1..10).to_a.shuffle).should eq 5.5
+    median((1..11).to_a.shuffle).should eq 6
+  end
 end
