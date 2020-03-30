@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.32.1">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+
+  <meta id="repository-name" content="github.com/lbarasti/statistics">
+  <title>Statistics - github.com/lbarasti/statistics</title>
+  <script type="text/javascript">
+    CrystalDoc.base_path = "";
+  </script>
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="repository-links">
+      <a href="index.html">README</a>
+    </div>
+  </div>
+
+  <div class="search-results" class="hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent open current" data-id="github.com/lbarasti/statistics/Statistics" data-name="statistics">
+      <a href="Statistics.html">Statistics</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="github.com/lbarasti/statistics/Statistics/Distributions" data-name="statistics::distributions">
+      <a href="Statistics/Distributions.html">Distributions</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/lbarasti/statistics/Statistics/Distributions/Constant" data-name="statistics::distributions::constant">
+      <a href="Statistics/Distributions/Constant.html">Constant</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/lbarasti/statistics/Statistics/Distributions/Exponential" data-name="statistics::distributions::exponential">
+      <a href="Statistics/Distributions/Exponential.html">Exponential</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/lbarasti/statistics/Statistics/Distributions/Normal" data-name="statistics::distributions::normal">
+      <a href="Statistics/Distributions/Normal.html">Normal</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/lbarasti/statistics/Statistics/Distributions/Poisson" data-name="statistics::distributions::poisson">
+      <a href="Statistics/Distributions/Poisson.html">Poisson</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/lbarasti/statistics/Statistics/Distributions/Uniform" data-name="statistics::distributions::uniform">
+      <a href="Statistics/Distributions/Uniform.html">Uniform</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">module</span> Statistics
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>Basic descriptive statistics functionality.</p>
+
+<p>More flexible than a scientific-calculator, but not as exhaustive, yet.</p>
+
+
+
+
+
+
+
+  <h2>
+    <a id="extended-modules" class="anchor" href="#extended-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Extended Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="Statistics.html">Statistics</a></li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/lbarasti/statistics/blob/97da7c6c7422ab7208bdbf6822ef57ecd20dec27/src/lib/distributions.cr#L1" target="_blank">
+        lib/distributions.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/lbarasti/statistics/blob/97da7c6c7422ab7208bdbf6822ef57ecd20dec27/src/statistics.cr#L6" target="_blank">
+        statistics.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="VERSION">
+        <strong>VERSION</strong> = <code><span class="s">&quot;0.1.0&quot;</span></code>
+      </dt>
+      
+    
+  </dl>
+
+
+
+
+
+
+
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#describe(values)-instance-method" class="signature"><strong>#describe</strong>(values)</a>
+        
+          <div class="summary"><p>Computes several descriptive statistics of the passed array.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#frequency(values:Enumerable(T))forallT-instance-method" class="signature"><strong>#frequency</strong>(values : Enumerable(T)) forall T</a>
+        
+          <div class="summary"><p>Computes the number of occurrences of each value in the dataset.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#kurtosis(values,corrected=false,excess=false)-instance-method" class="signature"><strong>#kurtosis</strong>(values, corrected = <span class="n">false</span>, excess = <span class="n">false</span>)</a>
+        
+          <div class="summary"><p>Computes the kurtosis of a dataset.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#mean(values)-instance-method" class="signature"><strong>#mean</strong>(values)</a>
+        
+          <div class="summary"><p>Computes the mean of a dataset.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#median(values,sorted=false)-instance-method" class="signature"><strong>#median</strong>(values, sorted = <span class="n">false</span>)</a>
+        
+          <div class="summary"><p>Computes the median of all elements in a dataset.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#middle(a,b)-instance-method" class="signature"><strong>#middle</strong>(a, b)</a>
+        
+          <div class="summary"><p>Computes the middle of two values <code>a</code> and <code>b</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#middle(values)-instance-method" class="signature"><strong>#middle</strong>(values)</a>
+        
+          <div class="summary"><p>Computes the middle of an array <code>a</code>, which consists of finding its extrema and then computing their mean.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#mode(values:Enumerable)-instance-method" class="signature"><strong>#mode</strong>(values : Enumerable)</a>
+        
+          <div class="summary"><p>Computes the modal (most common) value in a dataset.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#moment(values,mean=nil,n=1)-instance-method" class="signature"><strong>#moment</strong>(values, mean = <span class="n">nil</span>, n = <span class="n">1</span>)</a>
+        
+          <div class="summary"><p>Calculates the n-th moment about the mean for a sample.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#quantile(values,p,sorted=false)-instance-method" class="signature"><strong>#quantile</strong>(values, p, sorted = <span class="n">false</span>)</a>
+        
+          <div class="summary"><p>Computes the quantile of a dataset at a specified probability <code>p</code> on the interval [0,1].</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#skew(values,corrected=false)-instance-method" class="signature"><strong>#skew</strong>(values, corrected = <span class="n">false</span>)</a>
+        
+          <div class="summary"><p>Computes the skewness of a dataset.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#std(values,mean=nil,corrected=false)-instance-method" class="signature"><strong>#std</strong>(values, mean = <span class="n">nil</span>, corrected = <span class="n">false</span>)</a>
+        
+          <div class="summary"><p>Computes the standard deviation of a dataset.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#var(values,mean=nil,corrected=false)-instance-method" class="signature"><strong>#var</strong>(values, mean = <span class="n">nil</span>, corrected = <span class="n">false</span>)</a>
+        
+          <div class="summary"><p>Computes the variance of a dataset.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+</div>
+
+
+
+
+
+
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="describe(values)-instance-method">
+      <div class="signature">
+        
+        def <strong>describe</strong>(values)
+
+        <a class="method-permalink" href="#describe(values)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Computes several descriptive statistics of the passed array.</p>
+
+<p>Parameters</p>
+
+<ul><li><code>values</code>: a one-dimensional dataset.</li></ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/lbarasti/statistics/blob/97da7c6c7422ab7208bdbf6822ef57ecd20dec27/src/statistics.cr#L14" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="frequency(values:Enumerable(T))forallT-instance-method">
+      <div class="signature">
+        
+        def <strong>frequency</strong>(values : Enumerable(T)) forall T
+
+        <a class="method-permalink" href="#frequency(values:Enumerable(T))forallT-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Computes the number of occurrences of each value in the dataset.</p>
+
+<p>Returns a Hash with each the dataset values as keys and the number of times they appear as value.</p>
+
+<p>Parameters</p>
+
+<ul><li><code>values</code>: a one-dimensional dataset</li></ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/lbarasti/statistics/blob/97da7c6c7422ab7208bdbf6822ef57ecd20dec27/src/statistics.cr#L38" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="kurtosis(values,corrected=false,excess=false)-instance-method">
+      <div class="signature">
+        
+        def <strong>kurtosis</strong>(values, corrected = <span class="n">false</span>, excess = <span class="n">false</span>)
+
+        <a class="method-permalink" href="#kurtosis(values,corrected=false,excess=false)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Computes the kurtosis of a dataset.</p>
+
+<p>Parameters</p>
+
+<ul><li><code>values</code>: a one-dimensional dataset.</li><li><code>corrected</code>: when set to <code>true</code>, then the calculations are corrected for statistical bias. Default is <code>false</code>.</li><li><code>excess</code>: when set to <code>true</code>, computes the <a href="https://en.wikipedia.org/wiki/Kurtosis#Excess_kurtosis" target="_blank">excess kurtosis</a>. Default is <code>false</code>.</li></ul>
+
+<p>This implementation is based on the <a href="https://github.com/scipy/scipy/blob/3de0d58/scipy/stats/stats.py#L1142" target="_blank">scipy/stats.py</a>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/lbarasti/statistics/blob/97da7c6c7422ab7208bdbf6822ef57ecd20dec27/src/statistics.cr#L53" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="mean(values)-instance-method">
+      <div class="signature">
+        
+        def <strong>mean</strong>(values)
+
+        <a class="method-permalink" href="#mean(values)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Computes the mean of a dataset.</p>
+
+<p>Parameters</p>
+
+<ul><li><code>values</code>: a one-dimensional dataset.</li></ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/lbarasti/statistics/blob/97da7c6c7422ab7208bdbf6822ef57ecd20dec27/src/statistics.cr#L72" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="median(values,sorted=false)-instance-method">
+      <div class="signature">
+        
+        def <strong>median</strong>(values, sorted = <span class="n">false</span>)
+
+        <a class="method-permalink" href="#median(values,sorted=false)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Computes the median of all elements in a dataset.</p>
+
+<p>For an even number of elements the mean of the two median elements will be computed.</p>
+
+<p>Parameters</p>
+
+<ul><li><code>values</code>: a one-dimensional dataset.</li><li><code>sorted</code>: when <code>true</code>, the computations assume that the provided values are
+  sorted. Default is <code>false</code>.</li></ul>
+
+<p>See Julia's <a href="https://docs.julialang.org/en/v1/stdlib/Statistics/#Statistics.median" target="_blank">Statistics.median</a>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/lbarasti/statistics/blob/97da7c6c7422ab7208bdbf6822ef57ecd20dec27/src/statistics.cr#L86" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="middle(a,b)-instance-method">
+      <div class="signature">
+        
+        def <strong>middle</strong>(a, b)
+
+        <a class="method-permalink" href="#middle(a,b)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Computes the middle of two values <code>a</code> and <code>b</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/lbarasti/statistics/blob/97da7c6c7422ab7208bdbf6822ef57ecd20dec27/src/statistics.cr#L111" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="middle(values)-instance-method">
+      <div class="signature">
+        
+        def <strong>middle</strong>(values)
+
+        <a class="method-permalink" href="#middle(values)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Computes the middle of an array <code>a</code>, which consists of finding its
+extrema and then computing their mean.</p>
+
+<p>Parameters</p>
+
+<ul><li><code>values</code>: a one-dimensional dataset.</li></ul>
+
+<p>See Julia's <a href="https://docs.julialang.org/en/v1/stdlib/Statistics/#Statistics.middle" target="_blank">Statistics.middle</a>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/lbarasti/statistics/blob/97da7c6c7422ab7208bdbf6822ef57ecd20dec27/src/statistics.cr#L105" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="mode(values:Enumerable)-instance-method">
+      <div class="signature">
+        
+        def <strong>mode</strong>(values : Enumerable)
+
+        <a class="method-permalink" href="#mode(values:Enumerable)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Computes the modal (most common) value in a dataset.</p>
+
+<p>Returns a pair with the modal value and the bin-count for the modal bin.
+If there is more than one such value, no guarantees are made which one will be picked.</p>
+
+<p><span class="flag purple">NOTE</span>  computing the mode requires traversing the entire dataset.</p>
+
+<p>Parameters</p>
+
+<ul><li><code>values</code>: a one-dimensional dataset.</li></ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/lbarasti/statistics/blob/97da7c6c7422ab7208bdbf6822ef57ecd20dec27/src/statistics.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="moment(values,mean=nil,n=1)-instance-method">
+      <div class="signature">
+        
+        def <strong>moment</strong>(values, mean = <span class="n">nil</span>, n = <span class="n">1</span>)
+
+        <a class="method-permalink" href="#moment(values,mean=nil,n=1)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the n-th moment about the mean for a sample.</p>
+
+<p>Parameters</p>
+
+<ul><li><code>values</code>: a one-dimensional dataset.</li><li><code><a href="Statistics.html#mean(values)-instance-method">#mean</a></code>: a pre-computed mean. If a mean is not provided, then the sample's
+  mean will be computed. Default is <code>nil</code>.</li><li><code>n</code>: Order of central moment that is returned. Default is <code>1</code>.</li></ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/lbarasti/statistics/blob/97da7c6c7422ab7208bdbf6822ef57ecd20dec27/src/statistics.cr#L134" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="quantile(values,p,sorted=false)-instance-method">
+      <div class="signature">
+        
+        def <strong>quantile</strong>(values, p, sorted = <span class="n">false</span>)
+
+        <a class="method-permalink" href="#quantile(values,p,sorted=false)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Computes the quantile of a dataset at a specified probability <code>p</code> on the interval [0,1].</p>
+
+<p>Quantiles are computed via linear interpolation between the points <code>((k-1)/(n-1), v[k])</code>,
+for <code>k = 1:n</code> where <code>n = values.size</code>.</p>
+
+<p>Parameters</p>
+
+<ul><li><code>values</code>: a one-dimensional dataset.</li><li><code>p</code>: probability. Values of <code>p</code> should be in the interval <code>[0, 1]</code>.</li><li><code>sorted</code> indicates whether <code>values</code> can be assumed to be sorted.</li></ul>
+
+<p>Implementation based on Julia's <a href="https://docs.julialang.org/en/v1/stdlib/Statistics/#Statistics.quantile" target="_blank">Statistics.quantile</a>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/lbarasti/statistics/blob/97da7c6c7422ab7208bdbf6822ef57ecd20dec27/src/statistics.cr#L150" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="skew(values,corrected=false)-instance-method">
+      <div class="signature">
+        
+        def <strong>skew</strong>(values, corrected = <span class="n">false</span>)
+
+        <a class="method-permalink" href="#skew(values,corrected=false)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Computes the skewness of a dataset.</p>
+
+<p>Parameters</p>
+
+<ul><li><code>values</code>: a one-dimensional dataset.</li><li><code>corrected</code>: when set to <code>true</code>, then the calculations are corrected for statistical bias. Default is <code>false</code>.</li></ul>
+
+<p>This implementation is based on the <a href="https://github.com/scipy/scipy/blob/3de0d58/scipy/stats/stats.py#L1039" target="_blank">scipy/stats.py</a>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/lbarasti/statistics/blob/97da7c6c7422ab7208bdbf6822ef57ecd20dec27/src/statistics.cr#L170" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="std(values,mean=nil,corrected=false)-instance-method">
+      <div class="signature">
+        
+        def <strong>std</strong>(values, mean = <span class="n">nil</span>, corrected = <span class="n">false</span>)
+
+        <a class="method-permalink" href="#std(values,mean=nil,corrected=false)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Computes the standard deviation of a dataset.</p>
+
+<p>Parameters</p>
+
+<ul><li><code>values</code>: a one-dimensional dataset.</li><li><code><a href="Statistics.html#mean(values)-instance-method">#mean</a></code>: a pre-computed <code><a href="Statistics.html#mean(values)-instance-method">#mean</a></code>. This could be a pre-computed sample's mean
+  or the population's known mean. If a mean is not provided, then the sample's
+  mean will be computed. Default is <code>nil</code>.</li><li><code>corrected</code>: when set to <code>true</code>, then the sum of squares is scaled
+  with <code>values.size - 1</code>, rather than with <code>values.size</code>. Default is <code>false</code>.</li></ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/lbarasti/statistics/blob/97da7c6c7422ab7208bdbf6822ef57ecd20dec27/src/statistics.cr#L188" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="var(values,mean=nil,corrected=false)-instance-method">
+      <div class="signature">
+        
+        def <strong>var</strong>(values, mean = <span class="n">nil</span>, corrected = <span class="n">false</span>)
+
+        <a class="method-permalink" href="#var(values,mean=nil,corrected=false)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Computes the variance of a dataset.</p>
+
+<p>Parameters</p>
+
+<ul><li><code>values</code>: a one-dimensional dataset.</li><li><code><a href="Statistics.html#mean(values)-instance-method">#mean</a></code>: a pre-computed <code><a href="Statistics.html#mean(values)-instance-method">#mean</a></code>. This could be a pre-computed sample's mean
+  or the population's known mean. If a mean is not provided, then the sample's
+  mean will be computed. Default is <code>nil</code>.</li><li><code>corrected</code>: when set to <code>true</code>, then the sum of squares is scaled
+  with <code>values.size - 1</code>, rather than with <code>values.size</code>. Default is <code>false</code>.</li></ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/lbarasti/statistics/blob/97da7c6c7422ab7208bdbf6822ef57ecd20dec27/src/statistics.cr#L201" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>
