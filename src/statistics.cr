@@ -29,6 +29,19 @@ module Statistics
     }
   end
 
+  # Computes the number of occurrences of each value in the dataset.
+  #
+  # Returns a Hash with each the dataset values as keys and the number of times they appear as value.
+  #
+  # Parameters
+  # - `values`: a one-dimensional dataset
+  def frequency(values : Enumerable(T)) forall T
+    values.reduce(Hash(T, Int32).new(0)) { |freq, v|
+      freq[v] += 1
+      freq
+    }
+  end
+
   # Computes the kurtosis of a dataset.
   #
   # Parameters
@@ -60,8 +73,9 @@ module Statistics
     values.reduce(0) { |acc, v| acc + v } / values.size
   end
 
-  # Computes the median of all elements in a dataset. For an even number of
-  # elements the mean of the two median elements will be computed.
+  # Computes the median of all elements in a dataset.
+  #
+  # For an even number of elements the mean of the two median elements will be computed.
   #
   # Parameters
   # - `values`: a one-dimensional dataset.
@@ -96,6 +110,18 @@ module Statistics
   # Computes the middle of two values `a` and `b`.
   def middle(a, b)
     0.5 * (a + b)
+  end
+
+  # Computes the modal (most common) value in a dataset.
+  #
+  # Returns a pair with the modal value and the bin-count for the modal bin.
+  # If there is more than one such value, no guarantees are made which one will be picked.
+  # NOTE: computing the mode requires traversing the entire dataset.
+  #
+  # Parameters
+  # - `values`: a one-dimensional dataset.
+  def mode(values : Enumerable)
+    frequency(values).max_by(&.last)
   end
 
   # Calculates the n-th moment about the mean for a sample.

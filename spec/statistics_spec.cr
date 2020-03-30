@@ -88,4 +88,16 @@ describe Statistics do
     quantile([42], 0.2).should eq 42
     quantile([42], 1).should eq 42
   end
+
+  it "can compute the mode and frequency hash of a sample" do
+    sample = [1, 1, 7, 7, 1, 5, 3, 6, 7, 6, 7, 10]
+    m, c = mode(sample)
+    m.should eq 7
+    c.should eq 4
+
+    f = frequency(sample)
+    f[1].should eq 3
+    f[10].should eq 1
+    f.max_by(&.last).first.should eq m
+  end
 end
