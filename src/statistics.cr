@@ -10,7 +10,7 @@ module Statistics
   # Computes several descriptive statistics of the passed array.
   #
   # Parameters
-  # - `values`: a one-dimensional dataset.
+  # - values: a one-dimensional dataset.
   def describe(values)
     size = values.size
     sorted = values.sort
@@ -21,10 +21,10 @@ module Statistics
       skewness: skew(values),
       kurtosis: kurtosis(values),
       min:      sorted.first,
+      middle:   middle(sorted),
       max:      sorted.last,
       q1:       quantile(sorted, 0.25, sorted: true),
       median:   median(sorted, sorted: true),
-      middle:   middle(sorted),
       q3:       quantile(sorted, 0.75, sorted: true),
     }
   end
@@ -34,7 +34,7 @@ module Statistics
   # Returns a Hash with each the dataset values as keys and the number of times they appear as value.
   #
   # Parameters
-  # - `values`: a one-dimensional dataset
+  # - values: a one-dimensional dataset
   def frequency(values : Enumerable(T)) forall T
     values.reduce(Hash(T, Int32).new(0)) { |freq, v|
       freq[v] += 1
@@ -45,9 +45,9 @@ module Statistics
   # Computes the kurtosis of a dataset.
   #
   # Parameters
-  # - `values`: a one-dimensional dataset.
-  # - `corrected`: when set to `true`, then the calculations are corrected for statistical bias. Default is `false`.
-  # - `excess`: when set to `true`, computes the [excess kurtosis](https://en.wikipedia.org/wiki/Kurtosis#Excess_kurtosis). Default is `false`.
+  # - values: a one-dimensional dataset.
+  # - corrected: when set to `true`, then the calculations are corrected for statistical bias. Default is `false`.
+  # - excess: when set to `true`, computes the [excess kurtosis](https://en.wikipedia.org/wiki/Kurtosis#Excess_kurtosis). Default is `false`.
   #
   # This implementation is based on the [scipy/stats.py](https://github.com/scipy/scipy/blob/3de0d58/scipy/stats/stats.py#L1142).
   def kurtosis(values, corrected = false, excess = false)
@@ -68,7 +68,7 @@ module Statistics
   # Computes the mean of a dataset.
   #
   # Parameters
-  # - `values`: a one-dimensional dataset.
+  # - values: a one-dimensional dataset.
   def mean(values)
     values.reduce(0) { |acc, v| acc + v } / values.size
   end
@@ -78,8 +78,8 @@ module Statistics
   # For an even number of elements the mean of the two median elements will be computed.
   #
   # Parameters
-  # - `values`: a one-dimensional dataset.
-  # - `sorted`: when `true`, the computations assume that the provided values are
+  # - values: a one-dimensional dataset.
+  # - sorted: when `true`, the computations assume that the provided values are
   #   sorted. Default is `false`.
   #
   # See Julia's [Statistics.median](https://docs.julialang.org/en/v1/stdlib/Statistics/#Statistics.median).
@@ -99,7 +99,7 @@ module Statistics
   # extrema and then computing their mean.
   #
   # Parameters
-  # - `values`: a one-dimensional dataset.
+  # - values: a one-dimensional dataset.
   #
   # See Julia's [Statistics.middle](https://docs.julialang.org/en/v1/stdlib/Statistics/#Statistics.middle).
   def middle(values)
@@ -116,10 +116,10 @@ module Statistics
   #
   # Returns a pair with the modal value and the bin-count for the modal bin.
   # If there is more than one such value, no guarantees are made which one will be picked.
-  # NOTE: computing the mode requires traversing the entire dataset.
+  # NOTE: Computing the mode requires traversing the entire dataset.
   #
   # Parameters
-  # - `values`: a one-dimensional dataset.
+  # - values: a one-dimensional dataset.
   def mode(values : Enumerable)
     frequency(values).max_by(&.last)
   end
@@ -127,10 +127,10 @@ module Statistics
   # Calculates the n-th moment about the mean for a sample.
   #
   # Parameters
-  # - `values`: a one-dimensional dataset.
-  # - `mean`: a pre-computed mean. If a mean is not provided, then the sample's
+  # - values: a one-dimensional dataset.
+  # - mean: a pre-computed mean. If a mean is not provided, then the sample's
   #   mean will be computed. Default is `nil`.
-  # - `n`: Order of central moment that is returned. Default is `1`.
+  # - n: order of central moment that is returned. Default is `1`.
   def moment(values, mean = nil, n = 1)
     m = mean || Statistics.mean(values)
     values.reduce(0) { |a, b| a + (b - m)**n } / values.size
@@ -142,9 +142,9 @@ module Statistics
   # for `k = 1:n` where `n = values.size`.
   #
   # Parameters
-  # - `values`: a one-dimensional dataset.
-  # - `p`: probability. Values of `p` should be in the interval `[0, 1]`.
-  # - `sorted` indicates whether `values` can be assumed to be sorted.
+  # - values: a one-dimensional dataset.
+  # - p: probability. Values of `p` should be in the interval `[0, 1]`.
+  # - sorted indicates whether values can be assumed to be sorted.
   #
   # Implementation based on Julia's [Statistics.quantile](https://docs.julialang.org/en/v1/stdlib/Statistics/#Statistics.quantile).
   def quantile(values, p, sorted = false)
@@ -163,8 +163,8 @@ module Statistics
   # Computes the skewness of a dataset.
   #
   # Parameters
-  # - `values`: a one-dimensional dataset.
-  # - `corrected`: when set to `true`, then the calculations are corrected for statistical bias. Default is `false`.
+  # - values: a one-dimensional dataset.
+  # - corrected: when set to `true`, then the calculations are corrected for statistical bias. Default is `false`.
   #
   # This implementation is based on the [scipy/stats.py](https://github.com/scipy/scipy/blob/3de0d58/scipy/stats/stats.py#L1039).
   def skew(values, corrected = false)
@@ -179,11 +179,11 @@ module Statistics
   # Computes the standard deviation of a dataset.
   #
   # Parameters
-  # - `values`: a one-dimensional dataset.
-  # - `mean`: a pre-computed `mean`. This could be a pre-computed sample's mean
+  # - values: a one-dimensional dataset.
+  # - mean: a pre-computed mean. This could be a pre-computed sample's mean
   #   or the population's known mean. If a mean is not provided, then the sample's
   #   mean will be computed. Default is `nil`.
-  # - `corrected`: when set to `true`, then the sum of squares is scaled
+  # - corrected: when set to `true`, then the sum of squares is scaled
   #   with `values.size - 1`, rather than with `values.size`. Default is `false`.
   def std(values, mean = nil, corrected = false)
     Math.sqrt(var(values, mean, corrected))
@@ -192,11 +192,11 @@ module Statistics
   # Computes the variance of a dataset.
   #
   # Parameters
-  # - `values`: a one-dimensional dataset.
-  # - `mean`: a pre-computed `mean`. This could be a pre-computed sample's mean
+  # - values: a one-dimensional dataset.
+  # - mean: a pre-computed mean. This could be a pre-computed sample's mean
   #   or the population's known mean. If a mean is not provided, then the sample's
   #   mean will be computed. Default is `nil`.
-  # - `corrected`: when set to `true`, then the sum of squares is scaled
+  # - corrected: when set to `true`, then the sum of squares is scaled
   #   with `values.size - 1`, rather than with `values.size`. Default is `false`.
   def var(values, mean = nil, corrected = false)
     correction_factor = corrected ? values.size / (values.size - 1) : 1

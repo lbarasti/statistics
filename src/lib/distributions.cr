@@ -1,7 +1,7 @@
 module Statistics
   module Distributions
     class Constant
-      property rand
+      getter rand
 
       def initialize(@rand : Float64)
       end

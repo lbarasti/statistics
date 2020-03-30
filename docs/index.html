@@ -138,9 +138,25 @@
 x <span class="o">=</span> [<span class="n">1</span>, <span class="n">10</span>, <span class="n">7</span>]
 mean(x) <span class="c"># 6</span>
 var(x) <span class="c"># 14</span>
-var(x, corrected: <span class="n">true</span>) <span class="c"># 21</span>
-var(x, mean: <span class="n">8</span>) <span class="c"># 18.0</span>
 std(x) <span class="c"># 3.7416...</span></code></pre>
+
+<p>If you'd like to know a bit more about your dataset, you can simply <code>describe</code> it</p>
+
+<pre><code class="language-crystal">x <span class="o">=</span> (<span class="n">1</span>..<span class="n">1000</span>).map { rand }.to_a <span class="c"># a uniformely distributed dataset</span>
+describe(x)
+<span class="c"># {</span>
+<span class="c">#   mean: 0.48, var: 0.08, std: 0.28, </span>
+<span class="c">#   skewness: 0.04, kurtosis: 1.81, </span>
+<span class="c">#   min: 0.01, middle: 0.49, max: 0.99, </span>
+<span class="c">#   q1: 0.24, median: 0.49, q3: 0.73</span>
+<span class="c"># }</span></code></pre>
+
+<p><code>Statistics.describe</code> returns a <code>NamedTuple</code>, so you can extract any value via indexing:</p>
+
+<pre><code class="language-crystal">stats <span class="o">=</span> describe(x)
+stats[<span class="n">:q1</span>] <span class="c"># returns the first quartile of your sample</span></code></pre>
+
+<p>For a complete list of the statistical functions provided, including <code>quantile</code>, <code>moment</code> and <code>skew</code>, check out the <a href="https://lbarasti.com/statistics/Statistics.html" target="_blank">docs</a>.</p>
 
 <h3><a id="sampling" class="anchor" href="#sampling">
   <svg class="octicon-link" aria-hidden="true">

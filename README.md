@@ -31,10 +31,30 @@ include Statistics
 x = [1, 10, 7]
 mean(x) # 6
 var(x) # 14
-var(x, corrected: true) # 21
-var(x, mean: 8) # 18.0
 std(x) # 3.7416...
 ```
+
+If you'd like to know a bit more about your dataset, you can simply `describe` it
+
+```crystal
+x = (1..1000).map { rand }.to_a # a uniformely distributed dataset
+describe(x)
+# {
+#   mean: 0.48, var: 0.08, std: 0.28, 
+#   skewness: 0.04, kurtosis: 1.81, 
+#   min: 0.01, middle: 0.49, max: 0.99, 
+#   q1: 0.24, median: 0.49, q3: 0.73
+# }
+```
+
+`Statistics.describe` returns a `NamedTuple`, so you can extract any value via indexing:
+
+```crystal
+stats = describe(x)
+stats[:q1] # returns the first quartile of your sample
+```
+
+For a complete list of the statistical functions provided, including `quantile`, `moment` and `skew`, check out the [docs](https://lbarasti.com/statistics/Statistics.html).
 
 ### Sampling
 To work with distributions, import the `Distributions` namespace as follows.
