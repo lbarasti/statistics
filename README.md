@@ -1,3 +1,4 @@
+[![GitHub release](https://img.shields.io/github/release/lbarasti/statistics.svg)](https://github.com/lbarasti/statistics/releases)
 ![Build Status](https://github.com/lbarasti/statistics/workflows/build/badge.svg)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
