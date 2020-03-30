@@ -72,6 +72,9 @@ The guiding principle at this stage is
 
 Which in this context means: let's not focus on benchmarks and performance, but rather on usability and correctness.
 
+## References
+* [numpy.random](https://numpy.org/devdocs/reference/random/generator.html): distributions and random sampling
+* [numpy statistics](https://numpy.org/devdocs/reference/routines.statistics.html#averages-and-variances): order statistics, averages and variances
 ## Contributing
 
 1. Fork it (<https://github.com/lbarasti/statistics/fork>)
