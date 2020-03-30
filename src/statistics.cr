@@ -22,10 +22,10 @@ module Statistics
       kurtosis: kurtosis(values),
       min:      sorted.first,
       max:      sorted.last,
-      q1:       sorted[size//4],
+      q1:       quantile(sorted, 0.25, sorted: true),
       median:   median(sorted, sorted: true),
       middle:   middle(sorted),
-      q3:       sorted[size//4*3],
+      q3:       quantile(sorted, 0.75, sorted: true),
     }
   end
 
@@ -110,6 +110,28 @@ module Statistics
     values.reduce(0) { |a, b| a + (b - m)**n } / values.size
   end
 
+  # Computes the quantile of a dataset at a specified probability `p` on the interval [0,1].
+  #
+  # Quantiles are computed via linear interpolation between the points `((k-1)/(n-1), v[k])`,
+  # for `k = 1:n` where `n = values.size`.
+  #
+  # Parameters
+  # - `values`: a one-dimensional dataset.
+  # - `p`: probability. Values of `p` should be in the interval `[0, 1]`.
+  # - `sorted` indicates whether `values` can be assumed to be sorted.
+  def quantile(values, p, sorted = false)
+    sorted_values = sorted ? values : values.sort
+    n = values.size
+    aleph = (n - 1) * p
+    j = clamp(aleph.floor, 0, n - 2).to_i
+    gamma = clamp(aleph - j, 0, 1)
+
+    a = sorted_values[j]
+    b = sorted_values[j + 1]
+
+    a + (b - a) * gamma
+  end
+
   # Computes the skewness of a dataset.
   #
   # Parameters
@@ -152,5 +174,9 @@ module Statistics
     correction_factor = corrected ? values.size / (values.size - 1) : 1
 
     moment(values, mean, 2) * correction_factor
+  end
+
+  private def clamp(x, min, max)
+    x < min ? min : x < max ? x : max
   end
 end

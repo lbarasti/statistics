@@ -69,4 +69,23 @@ describe Statistics do
     median((1..10).to_a.shuffle).should eq 5.5
     median((1..11).to_a.shuffle).should eq 6
   end
+
+  it "can compute the quantile `p` of a sample" do
+    sample = (0..20).to_a
+    quantile(sample, 0.5).should eq 10
+    quantile(sample, 0.1).should eq 2
+    quantile(sample, 0.9).should eq 18
+    quantile(sample, 0).should eq 0
+    quantile(sample, 1).should eq 20
+
+    quantile([1, 2, 3], 0.5).should eq median([1, 2, 3])
+    quantile([1, 2, 3], 0).should eq 1
+    quantile([1, 2, 3], 1).should eq 3
+
+    quantile([1, 10], 0.5).should eq 5.5
+
+    quantile([42], 0).should eq 42
+    quantile([42], 0.2).should eq 42
+    quantile([42], 1).should eq 42
+  end
 end
