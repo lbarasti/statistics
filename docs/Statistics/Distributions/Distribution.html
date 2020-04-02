@@ -15,7 +15,7 @@
 </svg>
 
   <meta id="repository-name" content="github.com/lbarasti/statistics">
-  <title>Statistics::Distributions::Exponential - github.com/lbarasti/statistics</title>
+  <title>Statistics::Distributions::Distribution - github.com/lbarasti/statistics</title>
   <script type="text/javascript">
     CrystalDoc.base_path = "../../";
   </script>
@@ -55,12 +55,12 @@
       
     </li>
   
-  <li class=" " data-id="github.com/lbarasti/statistics/Statistics/Distributions/Distribution" data-name="statistics::distributions::distribution">
+  <li class=" current" data-id="github.com/lbarasti/statistics/Statistics/Distributions/Distribution" data-name="statistics::distributions::distribution">
       <a href="../../Statistics/Distributions/Distribution.html">Distribution</a>
       
     </li>
   
-  <li class=" current" data-id="github.com/lbarasti/statistics/Statistics/Distributions/Exponential" data-name="statistics::distributions::exponential">
+  <li class=" " data-id="github.com/lbarasti/statistics/Statistics/Distributions/Exponential" data-name="statistics::distributions::exponential">
       <a href="../../Statistics/Distributions/Exponential.html">Exponential</a>
       
     </li>
@@ -99,38 +99,45 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Statistics::Distributions::Exponential
+  <span class="kind">abstract class</span> Statistics::Distributions::Distribution
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Statistics/Distributions/Exponential.html">Statistics::Distributions::Exponential</a></li><li class="superclass"><a href="../../Statistics/Distributions/Distribution.html">Statistics::Distributions::Distribution</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Statistics/Distributions/Distribution.html">Statistics::Distributions::Distribution</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+
+
+
+
 
 
 
 
   <h2>
-    <a id="overview" class="anchor" href="#overview">
+    <a id="direct-known-subclasses" class="anchor" href="#direct-known-subclasses">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Overview
+    Direct Known Subclasses
   </h2>
-
-  <p>Represents the probability distribution of the time between events in
-a Poisson point process, i.e., a process in which events occur continuously
-and independently at a constant average rate.</p>
-
-<p>See <a href="https://en.wikipedia.org/wiki/Exponential_distribution" target="_blank">wikipedia</a> for more details.</p>
-
-
-
-
-
-
-
-
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="../../Statistics/Distributions/Constant.html">Statistics::Distributions::Constant</a></li>
+    
+      <li class="other-type"><a href="../../Statistics/Distributions/Exponential.html">Statistics::Distributions::Exponential</a></li>
+    
+      <li class="other-type"><a href="../../Statistics/Distributions/Normal.html">Statistics::Distributions::Normal</a></li>
+    
+      <li class="other-type"><a href="../../Statistics/Distributions/Poisson.html">Statistics::Distributions::Poisson</a></li>
+    
+      <li class="other-type"><a href="../../Statistics/Distributions/Uniform.html">Statistics::Distributions::Uniform</a></li>
+    
+  </ul>
 
 
 
@@ -147,7 +154,7 @@ and independently at a constant average rate.</p>
   </h2>
   
     
-      <a href="https://github.com/lbarasti/statistics/blob/b1a55f22c0bda80460ef52eee93a033ddca2479f/src/lib/distributions.cr#L22" target="_blank">
+      <a href="https://github.com/lbarasti/statistics/blob/b1a55f22c0bda80460ef52eee93a033ddca2479f/src/lib/distributions.cr#L3" target="_blank">
         lib/distributions.cr
       </a>
     
@@ -157,25 +164,6 @@ and independently at a constant average rate.</p>
 
 
 
-
-  <h2>
-    <a id="constructors" class="anchor" href="#constructors">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Constructors
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#new(lambda:Float64)-class-method" class="signature"><strong>.new</strong>(lambda : Float64)</a>
-        
-          <div class="summary"><p>Creates an exponential distribution with a rate parameter <code>lambda</code>.</p></div>
-        
-      </li>
-    
-  </ul>
 
 
 
@@ -208,25 +196,6 @@ and independently at a constant average rate.</p>
   
     
 
-  <h3>Instance methods inherited from class <code><a href="../../Statistics/Distributions/Distribution.html">Statistics::Distributions::Distribution</a></code></h3>
-  
-  
-    <a href="../../Statistics/Distributions/Distribution.html#rand-instance-method" class="tooltip">
-      <span>rand</span>
-    rand</a>
-    
-  
-
-
-    
-
-
-    
-
-
-  
-    
-
 
     
 
@@ -248,37 +217,6 @@ and independently at a constant average rate.</p>
 </div>
 
 
-  <h2>
-    <a id="constructor-detail" class="anchor" href="#constructor-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Constructor Detail
-  </h2>
-  
-    <div class="entry-detail" id="new(lambda:Float64)-class-method">
-      <div class="signature">
-        
-        def self.<strong>new</strong>(lambda : Float64)
-
-        <a class="method-permalink" href="#new(lambda:Float64)-class-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Creates an exponential distribution with a rate parameter <code>lambda</code>.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/lbarasti/statistics/blob/b1a55f22c0bda80460ef52eee93a033ddca2479f/src/lib/distributions.cr#L24" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-
 
 
 
@@ -294,7 +232,7 @@ and independently at a constant average rate.</p>
   
     <div class="entry-detail" id="rand-instance-method">
       <div class="signature">
-        
+        abstract 
         def <strong>rand</strong>
 
         <a class="method-permalink" href="#rand-instance-method">#</a>
@@ -302,17 +240,13 @@ and independently at a constant average rate.</p>
       
         <div class="doc">
           
-            <div class="doc-inherited">
-              Description copied from class <a href="../../Statistics/Distributions/Distribution.html">Statistics::Distributions::Distribution</a>
-            </div>
-          
           <p>Samples a random variable with the given distribution.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/lbarasti/statistics/blob/b1a55f22c0bda80460ef52eee93a033ddca2479f/src/lib/distributions.cr#L27" target="_blank">View source</a>]
+          [<a href="https://github.com/lbarasti/statistics/blob/b1a55f22c0bda80460ef52eee93a033ddca2479f/src/lib/distributions.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>

@@ -55,6 +55,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/lbarasti/statistics/Statistics/Distributions/Distribution" data-name="statistics::distributions::distribution">
+      <a href="../../Statistics/Distributions/Distribution.html">Distribution</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/lbarasti/statistics/Statistics/Distributions/Exponential" data-name="statistics::distributions::exponential">
       <a href="../../Statistics/Distributions/Exponential.html">Exponential</a>
       
@@ -99,10 +104,21 @@
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Statistics/Distributions/Constant.html">Statistics::Distributions::Constant</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Statistics/Distributions/Constant.html">Statistics::Distributions::Constant</a></li><li class="superclass"><a href="../../Statistics/Distributions/Distribution.html">Statistics::Distributions::Distribution</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>Represents a deterministic distribution taking a single value.</p>
 
 
 
@@ -127,7 +143,7 @@
   </h2>
   
     
-      <a href="https://github.com/lbarasti/statistics/blob/79953a4cde1139aef09ab82c46d20a64ca15da72/src/lib/distributions.cr#L3" target="_blank">
+      <a href="https://github.com/lbarasti/statistics/blob/b1a55f22c0bda80460ef52eee93a033ddca2479f/src/lib/distributions.cr#L9" target="_blank">
         lib/distributions.cr
       </a>
     
@@ -149,7 +165,9 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new(rand:Float64)-class-method" class="signature"><strong>.new</strong>(rand : Float64)</a>
+        <a href="#new(krand:Float64)-class-method" class="signature"><strong>.new</strong>(k rand : Float64)</a>
+        
+          <div class="summary"><p>Creates a degenerate distribution which only takes the value <code>k</code>.</p></div>
         
       </li>
     
@@ -172,6 +190,8 @@
       <li class="entry-summary">
         <a href="#rand:Float64-instance-method" class="signature"><strong>#rand</strong> : Float64</a>
         
+          <div class="summary"><p>Samples a random variable with the given distribution.</p></div>
+        
       </li>
     
   </ul>
@@ -181,6 +201,25 @@
 
 
 <div class="methods-inherited">
+  
+    
+
+  <h3>Instance methods inherited from class <code><a href="../../Statistics/Distributions/Distribution.html">Statistics::Distributions::Distribution</a></code></h3>
+  
+  
+    <a href="../../Statistics/Distributions/Distribution.html#rand-instance-method" class="tooltip">
+      <span>rand</span>
+    rand</a>
+    
+  
+
+
+    
+
+
+    
+
+
   
     
 
@@ -214,18 +253,23 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(rand:Float64)-class-method">
+    <div class="entry-detail" id="new(krand:Float64)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(rand : Float64)
+        def self.<strong>new</strong>(k rand : Float64)
 
-        <a class="method-permalink" href="#new(rand:Float64)-class-method">#</a>
+        <a class="method-permalink" href="#new(krand:Float64)-class-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Creates a degenerate distribution which only takes the value <code>k</code>.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/lbarasti/statistics/blob/79953a4cde1139aef09ab82c46d20a64ca15da72/src/lib/distributions.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/lbarasti/statistics/blob/b1a55f22c0bda80460ef52eee93a033ddca2479f/src/lib/distributions.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -252,10 +296,19 @@
         <a class="method-permalink" href="#rand:Float64-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class <a href="../../Statistics/Distributions/Distribution.html">Statistics::Distributions::Distribution</a>
+            </div>
+          
+          <p>Samples a random variable with the given distribution.</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/lbarasti/statistics/blob/79953a4cde1139aef09ab82c46d20a64ca15da72/src/lib/distributions.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/lbarasti/statistics/blob/b1a55f22c0bda80460ef52eee93a033ddca2479f/src/lib/distributions.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
