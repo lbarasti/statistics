@@ -44,10 +44,17 @@ module Statistics
 
   # Counts the number of values in each bin of size `(max - min)` / `bins`.
   #
-  # Returns an array of tuples `{edge, count}`, where `edge` is the starting edge of a
-  # bin and `count` is the number of values in the corresponding `bin`.
-  def bin(values : Enumerable(T), bins : Int32, min_max : Tuple = values.minmax) : Array({Float64, Int32}) forall T
-    min, max = min_max
+  # Returns an array of tuples `{edge, count}` ordered by `edge`, where `edge` is the
+  # starting edge of a bin and `count` is the number of values in the corresponding `bin`.
+  #
+  # Note: Any empty bin will also be included.
+  def bin_count(values : Enumerable, bins : Int32, min = nil, max = nil) : Array({Float64, Int32})
+    if min.nil? || max.nil?
+      sample_min, sample_max = values.minmax
+      min = sample_min if min.nil?
+      max = sample_max if max.nil?
+    end
+
     counter = Array(Int32).new(size: bins, value: 0)
     step = (max - min) / bins
 

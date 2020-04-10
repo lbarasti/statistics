@@ -101,14 +101,31 @@ describe Statistics do
     f.max_by(&.last).first.should eq m
   end
 
-  it "can compute an arbitrary number of bins for a sample" do
+  describe ".bin_count" do
     sample = [1, 1, 7, 7, 1, 5, 3, 6, 7, 6, 7, 10]
 
-    bin(sample, 1).should eq [{1.0, sample.size}]
-    bin(sample, 2).should eq [{1.0, 5}, {5.5, 7}]
+    it "can compute an arbitrary number of bins for a sample" do
+      bin_count(sample, 1).should eq [{1.0, sample.size}]
+      bin_count(sample, 2).should eq [{1.0, 5}, {5.5, 7}]
 
-    bin((0..3), 3).should eq [{0.0, 1}, {1.0, 1}, {2.0, 2}]
+      bin_count(0..3, 3).should eq [{0.0, 1}, {1.0, 1}, {2.0, 2}]
+    end
 
-    bin([0.5, 1.5, 2.5], 3, {0, 3}).should eq [{0.0, 1}, {1.0, 1}, {2.0, 1}]
+    it "returns an array {edge, count} tuples sorted by edge" do
+      edges = bin_count(sample, 5).map(&.first)
+      edges.size.should eq 5
+      edges.each_cons(2) { |(a, b)|
+        (a < b).should be_true
+      }
+    end
+
+    it "includes bins where the count is zero" do
+      bin_count([1, 2, 7], 3).should eq [{1.0, 2}, {3.0, 0}, {5.0, 1}]
+    end
+
+    it "supports specifying the min and max edges" do
+      bin_count([0.5, 1.5, 2.5], 3, min: 0, max: 3).should eq [{0.0, 1}, {1.0, 1}, {2.0, 1}]
+      bin_count(0..3, 3, max: 6).should eq [{0.0, 2}, {2.0, 2}, {4.0, 0}]
+    end
   end
 end
