@@ -100,4 +100,15 @@ describe Statistics do
     f[10].should eq 1
     f.max_by(&.last).first.should eq m
   end
+
+  it "can compute an arbitrary number of bins for a sample" do
+    sample = [1, 1, 7, 7, 1, 5, 3, 6, 7, 6, 7, 10]
+
+    bin(sample, 1).should eq [{1.0, sample.size}]
+    bin(sample, 2).should eq [{1.0, 5}, {5.5, 7}]
+
+    bin((0..3), 3).should eq [{0.0, 1}, {1.0, 1}, {2.0, 2}]
+
+    bin([0.5, 1.5, 2.5], 3, {0, 3}).should eq [{0.0, 1}, {1.0, 1}, {2.0, 1}]
+  end
 end

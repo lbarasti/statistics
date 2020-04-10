@@ -42,6 +42,24 @@ module Statistics
     }
   end
 
+  # Counts the number of values in each bin of size `(max - min)` / `bins`.
+  #
+  # Returns an array of tuples `{edge, count}`, where `edge` is the starting edge of a
+  # bin and `count` is the number of values in the corresponding `bin`.
+  def bin(values : Enumerable(T), bins : Int32, min_max : Tuple = values.minmax) : Array({Float64, Int32}) forall T
+    min, max = min_max
+    counter = Array(Int32).new(size: bins, value: 0)
+    step = (max - min) / bins
+
+    values.each { |v|
+      idx = v == max ? bins - 1 : ((v - min) / step).floor.to_i
+
+      counter[idx] += 1
+    }
+
+    Array.new(bins) { |i| {min + i * step, counter[i]} }
+  end
+
   # Computes the kurtosis of a dataset.
   #
   # Parameters
