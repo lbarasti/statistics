@@ -34,7 +34,7 @@ module Statistics
   # Returns a Hash with each the dataset values as keys and the number of times they appear as value.
   #
   # Parameters
-  # - values: a one-dimensional dataset
+  # - values: a one-dimensional dataset.
   def frequency(values : Enumerable(T)) forall T
     values.reduce(Hash(T, Int32).new(0)) { |freq, v|
       freq[v] += 1
@@ -42,12 +42,18 @@ module Statistics
     }
   end
 
-  # Counts the number of values in each bin of size `(max - min)` / `bins`.
+  # Counts the number of values in each bin of size `(max - min) / bins`.
   #
   # Returns an array of tuples `{edge, count}` ordered by `edge`, where `edge` is the
   # starting edge of a bin and `count` is the number of values in the corresponding `bin`.
   #
-  # Note: Any empty bin will also be included.
+  # NOTE: Any empty bin will also be included.
+  #
+  # Parameters
+  # - values: a one-dimensional dataset.
+  # - bins: the number of equally-sized bins to divide the datapoints into.
+  # - min: the left end of the first bin's edge. If none is provided, then `values.min` is used.
+  # - max: the right end of the last bin's edge. If none is provided, then `values.max` is used.
   def bin_count(values : Enumerable, bins : Int32, min = nil, max = nil) : Array({Float64, Int32})
     if min.nil? || max.nil?
       sample_min, sample_max = values.minmax

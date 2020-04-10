@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.32.1">
+<meta name="generator" content="Crystal Docs 0.33.0">
 
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/doc.js"></script>
@@ -157,14 +157,14 @@
   </h2>
   
     
-      <a href="https://github.com/lbarasti/statistics/blob/bbd282b89ee86911c5616d0a08c1904e9a8d2e01/src/lib/distributions.cr#L1" target="_blank">
+      <a href="https://github.com/lbarasti/statistics/blob/24ac181e033bb39fd1f8fb99b4ffb8ec125d9cc4/src/lib/distributions.cr#L1" target="_blank">
         lib/distributions.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/lbarasti/statistics/blob/bbd282b89ee86911c5616d0a08c1904e9a8d2e01/src/statistics.cr#L6" target="_blank">
+      <a href="https://github.com/lbarasti/statistics/blob/24ac181e033bb39fd1f8fb99b4ffb8ec125d9cc4/src/statistics.cr#L6" target="_blank">
         statistics.cr
       </a>
     
@@ -186,7 +186,7 @@
   <dl>
     
       <dt class="entry-const" id="VERSION">
-        <strong>VERSION</strong> = <code><span class="s">&quot;0.2.0&quot;</span></code>
+        <strong>VERSION</strong> = <code><span class="s">&quot;0.3.0&quot;</span></code>
       </dt>
       
     
@@ -207,6 +207,13 @@
     Instance Method Summary
   </h2>
   <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#bin_count(values:Enumerable,bins:Int32,min=nil,max=nil):Array(::Tuple(Float64,Int32))-instance-method" class="signature"><strong>#bin_count</strong>(values : Enumerable, bins : Int32, min = <span class="n">nil</span>, max = <span class="n">nil</span>) : Array(::Tuple(Float64, Int32))</a>
+        
+          <div class="summary"><p>Counts the number of values in each bin of size <code>(max - min) / bins</code>.</p></div>
+        
+      </li>
     
       <li class="entry-summary">
         <a href="#describe(values)-instance-method" class="signature"><strong>#describe</strong>(values)</a>
@@ -323,6 +330,36 @@
     Instance Method Detail
   </h2>
   
+    <div class="entry-detail" id="bin_count(values:Enumerable,bins:Int32,min=nil,max=nil):Array(::Tuple(Float64,Int32))-instance-method">
+      <div class="signature">
+        
+        def <strong>bin_count</strong>(values : Enumerable, bins : Int32, min = <span class="n">nil</span>, max = <span class="n">nil</span>) : Array(::Tuple(Float64, Int32))
+
+        <a class="method-permalink" href="#bin_count(values:Enumerable,bins:Int32,min=nil,max=nil):Array(::Tuple(Float64,Int32))-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Counts the number of values in each bin of size <code>(max - min) / bins</code>.</p>
+
+<p>Returns an array of tuples <code>{edge, count}</code> ordered by <code>edge</code>, where <code>edge</code> is the
+starting edge of a bin and <code>count</code> is the number of values in the corresponding <code>bin</code>.</p>
+
+<p><span class="flag purple">NOTE</span>  Any empty bin will also be included.</p>
+
+<p>Parameters</p>
+
+<ul><li>values: a one-dimensional dataset.</li><li>bins: the number of equally-sized bins to divide the datapoints into.</li><li>min: the left end of the first bin's edge. If none is provided, then <code>values.min</code> is used.</li><li>max: the right end of the last bin's edge. If none is provided, then <code>values.max</code> is used.</li></ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/lbarasti/statistics/blob/24ac181e033bb39fd1f8fb99b4ffb8ec125d9cc4/src/statistics.cr#L57" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
     <div class="entry-detail" id="describe(values)-instance-method">
       <div class="signature">
         
@@ -343,7 +380,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/lbarasti/statistics/blob/bbd282b89ee86911c5616d0a08c1904e9a8d2e01/src/statistics.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/lbarasti/statistics/blob/24ac181e033bb39fd1f8fb99b4ffb8ec125d9cc4/src/statistics.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -364,13 +401,13 @@
 
 <p>Parameters</p>
 
-<ul><li>values: a one-dimensional dataset</li></ul>
+<ul><li>values: a one-dimensional dataset.</li></ul>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/lbarasti/statistics/blob/bbd282b89ee86911c5616d0a08c1904e9a8d2e01/src/statistics.cr#L38" target="_blank">View source</a>]
+          [<a href="https://github.com/lbarasti/statistics/blob/24ac181e033bb39fd1f8fb99b4ffb8ec125d9cc4/src/statistics.cr#L38" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -397,7 +434,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/lbarasti/statistics/blob/bbd282b89ee86911c5616d0a08c1904e9a8d2e01/src/statistics.cr#L53" target="_blank">View source</a>]
+          [<a href="https://github.com/lbarasti/statistics/blob/24ac181e033bb39fd1f8fb99b4ffb8ec125d9cc4/src/statistics.cr#L84" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -422,7 +459,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/lbarasti/statistics/blob/bbd282b89ee86911c5616d0a08c1904e9a8d2e01/src/statistics.cr#L72" target="_blank">View source</a>]
+          [<a href="https://github.com/lbarasti/statistics/blob/24ac181e033bb39fd1f8fb99b4ffb8ec125d9cc4/src/statistics.cr#L103" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -452,7 +489,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/lbarasti/statistics/blob/bbd282b89ee86911c5616d0a08c1904e9a8d2e01/src/statistics.cr#L86" target="_blank">View source</a>]
+          [<a href="https://github.com/lbarasti/statistics/blob/24ac181e033bb39fd1f8fb99b4ffb8ec125d9cc4/src/statistics.cr#L117" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -473,7 +510,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/lbarasti/statistics/blob/bbd282b89ee86911c5616d0a08c1904e9a8d2e01/src/statistics.cr#L111" target="_blank">View source</a>]
+          [<a href="https://github.com/lbarasti/statistics/blob/24ac181e033bb39fd1f8fb99b4ffb8ec125d9cc4/src/statistics.cr#L142" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -501,7 +538,7 @@ extrema and then computing their mean.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/lbarasti/statistics/blob/bbd282b89ee86911c5616d0a08c1904e9a8d2e01/src/statistics.cr#L105" target="_blank">View source</a>]
+          [<a href="https://github.com/lbarasti/statistics/blob/24ac181e033bb39fd1f8fb99b4ffb8ec125d9cc4/src/statistics.cr#L136" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -531,7 +568,7 @@ If there is more than one such value, no guarantees are made which one will be p
       <br/>
       <div>
         
-          [<a href="https://github.com/lbarasti/statistics/blob/bbd282b89ee86911c5616d0a08c1904e9a8d2e01/src/statistics.cr#L123" target="_blank">View source</a>]
+          [<a href="https://github.com/lbarasti/statistics/blob/24ac181e033bb39fd1f8fb99b4ffb8ec125d9cc4/src/statistics.cr#L154" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -557,7 +594,7 @@ If there is more than one such value, no guarantees are made which one will be p
       <br/>
       <div>
         
-          [<a href="https://github.com/lbarasti/statistics/blob/bbd282b89ee86911c5616d0a08c1904e9a8d2e01/src/statistics.cr#L134" target="_blank">View source</a>]
+          [<a href="https://github.com/lbarasti/statistics/blob/24ac181e033bb39fd1f8fb99b4ffb8ec125d9cc4/src/statistics.cr#L165" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -587,7 +624,7 @@ for <code>k = 1:n</code> where <code>n = values.size</code>.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/lbarasti/statistics/blob/bbd282b89ee86911c5616d0a08c1904e9a8d2e01/src/statistics.cr#L150" target="_blank">View source</a>]
+          [<a href="https://github.com/lbarasti/statistics/blob/24ac181e033bb39fd1f8fb99b4ffb8ec125d9cc4/src/statistics.cr#L181" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -614,7 +651,7 @@ for <code>k = 1:n</code> where <code>n = values.size</code>.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/lbarasti/statistics/blob/bbd282b89ee86911c5616d0a08c1904e9a8d2e01/src/statistics.cr#L170" target="_blank">View source</a>]
+          [<a href="https://github.com/lbarasti/statistics/blob/24ac181e033bb39fd1f8fb99b4ffb8ec125d9cc4/src/statistics.cr#L201" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -642,7 +679,7 @@ for <code>k = 1:n</code> where <code>n = values.size</code>.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/lbarasti/statistics/blob/bbd282b89ee86911c5616d0a08c1904e9a8d2e01/src/statistics.cr#L188" target="_blank">View source</a>]
+          [<a href="https://github.com/lbarasti/statistics/blob/24ac181e033bb39fd1f8fb99b4ffb8ec125d9cc4/src/statistics.cr#L219" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -670,7 +707,7 @@ for <code>k = 1:n</code> where <code>n = values.size</code>.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/lbarasti/statistics/blob/bbd282b89ee86911c5616d0a08c1904e9a8d2e01/src/statistics.cr#L201" target="_blank">View source</a>]
+          [<a href="https://github.com/lbarasti/statistics/blob/24ac181e033bb39fd1f8fb99b4ffb8ec125d9cc4/src/statistics.cr#L232" target="_blank">View source</a>]
         
       </div>
     </div>
