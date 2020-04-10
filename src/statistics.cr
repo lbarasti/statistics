@@ -5,7 +5,7 @@ require "./lib/distributions"
 # More flexible than a scientific-calculator, but not as exhaustive, yet.
 module Statistics
   extend self
-  VERSION = "0.2.0"
+  VERSION = "0.3.0"
 
   # Computes several descriptive statistics of the passed array.
   #
