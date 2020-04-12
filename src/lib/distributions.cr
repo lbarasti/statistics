@@ -36,10 +36,16 @@ module Statistics
     #
     # See [wikipedia](https://en.wikipedia.org/wiki/Normal_distribution) for more details.
     class Normal < Distribution(Float64)
-      TWO_PI = 2 * Math::PI
+      TWO_PI          = 2 * Math::PI
+      PDF_COEFFICIENT = 1 / Math.sqrt(TWO_PI)
 
       # Creates a normal distribution with the given `mean` and `std`.
-      def initialize(@mean : Float64, @std : Float64)
+      def initialize(@mean : Float64 = 0, @std : Float64 = 1)
+      end
+
+      def pdf(x)
+        exponent = -0.5 * ((x - @mean) / @std)**2
+        PDF_COEFFICIENT / @std * Math.exp(exponent)
       end
 
       def rand : Float64

@@ -51,6 +51,21 @@ describe Normal do
     skew(values).should be_close(expected[:skewness], tolerance)
     kurtosis(values, excess: true).should be_close(expected[:kurtosis], tolerance*2)
   end
+
+  it "computes the pdf for a given `x`" do
+    # https://en.wikipedia.org/wiki/Normal_distribution#Numerical_approximations_for_the_normal_CDF
+    # see also https://www.ijser.org/researchpaper/Approximations-to-Standard-Normal-Distribution-Function.pdf
+    n = Normal.new
+    b0 = 0.2316419; b1 = 0.319381530; b2 = -0.356563782; b3 = 1.781477937; b4 = -1.821255978; b5 = 1.330274429
+
+    cum = ->(x : Float64) {
+      t = 1 / (1 + b0 * x)
+      1 - n.pdf(x) * (b1 * t + b2 * t**2 + b3 * t**3 + b4 * t**4 + b5 * t**5)
+    }
+    cum.call(0.0).should be_close 0.5, 10e-5
+    (cum.call(1.0) - (1 - cum.call(1.0))).should be_close 0.6827, 10e-5
+    cum.call(0.6745).should be_close 0.75, 10e-5
+  end
 end
 
 describe Poisson do
