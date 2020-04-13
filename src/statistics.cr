@@ -42,10 +42,18 @@ module Statistics
     }
   end
 
+  private enum Edge
+    Left
+    Centre
+    Right
+  end
+
+  # Bin edges, counts and step. Returned by `#bin_count`
+  private record Bins, edges : Array(Float64), counts : Array(Int32), step : Float64
+
   # Counts the number of values in each bin of size `(max - min) / bins`.
   #
-  # Returns an array of tuples `{edge, count}` ordered by `edge`, where `edge` is the
-  # starting edge of a bin and `count` is the number of values in the corresponding `bin`.
+  # Returns a `Bins` object where `edges` and `counts` are ordered by edge.
   #
   # NOTE: Any empty bin will also be included.
   #
@@ -54,7 +62,9 @@ module Statistics
   # - bins: the number of equally-sized bins to divide the datapoints into.
   # - min: the left end of the first bin's edge. If none is provided, then `values.min` is used.
   # - max: the right end of the last bin's edge. If none is provided, then `values.max` is used.
-  def bin_count(values : Enumerable, bins : Int32, min = nil, max = nil) : Array({Float64, Int32})
+  # - edge: determines whether the left edge of the bin, its mid-point or right edge should be returned.
+  #   Choices are `:left`, `:centre` and `:right`. Default is `:left`.
+  def bin_count(values : Enumerable, bins : Int32, min = nil, max = nil, edge : Edge = :left) : Bins
     if min.nil? || max.nil?
       sample_min, sample_max = values.minmax
       min = sample_min if min.nil?
@@ -69,8 +79,19 @@ module Statistics
 
       counter[idx] += 1
     }
+    edges = Array.new(bins){ |i| min + i * step }
 
-    Array.new(bins) { |i| {min + i * step, counter[i]} }
+    adjusted_edges = case edge
+    when .left?
+      edges
+    when .centre?
+      edges.map(&.+(step / 2))
+    when .right?
+      edges.map(&.+(step))
+    else
+      raise ArgumentError.new("Unexpected value")
+    end
+    Bins.new edges: adjusted_edges, counts: counter, step: step
   end
 
   # Computes the kurtosis of a dataset.

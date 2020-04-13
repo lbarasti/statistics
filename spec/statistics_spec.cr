@@ -105,14 +105,14 @@ describe Statistics do
     sample = [1, 1, 7, 7, 1, 5, 3, 6, 7, 6, 7, 10]
 
     it "can compute an arbitrary number of bins for a sample" do
-      bin_count(sample, 1).should eq [{1.0, sample.size}]
-      bin_count(sample, 2).should eq [{1.0, 5}, {5.5, 7}]
+      transposed_bin_count(sample, 1).should eq [{1.0, sample.size}]
+      transposed_bin_count(sample, 2).should eq [{1.0, 5}, {5.5, 7}]
 
-      bin_count(0..3, 3).should eq [{0.0, 1}, {1.0, 1}, {2.0, 2}]
+      transposed_bin_count(0..3, 3).should eq [{0.0, 1}, {1.0, 1}, {2.0, 2}]
     end
 
     it "returns an array {edge, count} tuples sorted by edge" do
-      edges = bin_count(sample, 5).map(&.first)
+      edges = transposed_bin_count(sample, 5).map(&.first)
       edges.size.should eq 5
       edges.each_cons(2) { |(a, b)|
         (a < b).should be_true
@@ -120,12 +120,23 @@ describe Statistics do
     end
 
     it "includes bins where the count is zero" do
-      bin_count([1, 2, 7], 3).should eq [{1.0, 2}, {3.0, 0}, {5.0, 1}]
+      transposed_bin_count([1, 2, 7], 3).should eq [{1.0, 2}, {3.0, 0}, {5.0, 1}]
     end
 
     it "supports specifying the min and max edges" do
-      bin_count([0.5, 1.5, 2.5], 3, min: 0, max: 3).should eq [{0.0, 1}, {1.0, 1}, {2.0, 1}]
-      bin_count(0..3, 3, max: 6).should eq [{0.0, 2}, {2.0, 2}, {4.0, 0}]
+      transposed_bin_count([0.5, 1.5, 2.5], 3, min: 0, max: 3).should eq [{0.0, 1}, {1.0, 1}, {2.0, 1}]
+      transposed_bin_count(0..3, 3, max: 6).should eq [{0.0, 2}, {2.0, 2}, {4.0, 0}]
+    end
+
+    it "supports specifying which edge point should be returned" do
+      bins = 5
+      step = (sample.max - sample.min) / bins
+      
+      left = bin_count(sample, bins, edge: :left).edges
+      centre = bin_count(sample, bins, edge: :centre).edges
+      right = bin_count(sample, bins, edge: :right).edges
+      left.zip(centre).each { |l,c| (l - c + step / 2).should be_close 0, 1e-15}
+      left.zip(right).each { |l,r| (l - r + step).should be_close 0, 1e-15}
     end
   end
 end
