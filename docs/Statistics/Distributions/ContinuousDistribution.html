@@ -15,7 +15,7 @@
 </svg>
 
   <meta id="repository-name" content="github.com/lbarasti/statistics">
-  <title>Statistics::Distributions::Normal - github.com/lbarasti/statistics</title>
+  <title>Statistics::Distributions::ContinuousDistribution - github.com/lbarasti/statistics</title>
   <script type="text/javascript">
     CrystalDoc.base_path = "../../";
   </script>
@@ -60,7 +60,7 @@
       
     </li>
   
-  <li class=" " data-id="github.com/lbarasti/statistics/Statistics/Distributions/ContinuousDistribution" data-name="statistics::distributions::continuousdistribution">
+  <li class=" current" data-id="github.com/lbarasti/statistics/Statistics/Distributions/ContinuousDistribution" data-name="statistics::distributions::continuousdistribution">
       <a href="../../Statistics/Distributions/ContinuousDistribution.html">ContinuousDistribution</a>
       
     </li>
@@ -80,7 +80,7 @@
       
     </li>
   
-  <li class=" current" data-id="github.com/lbarasti/statistics/Statistics/Distributions/Normal" data-name="statistics::distributions::normal">
+  <li class=" " data-id="github.com/lbarasti/statistics/Statistics/Distributions/Normal" data-name="statistics::distributions::normal">
       <a href="../../Statistics/Distributions/Normal.html">Normal</a>
       
     </li>
@@ -114,36 +114,41 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Statistics::Distributions::Normal
+  <span class="kind">abstract class</span> Statistics::Distributions::ContinuousDistribution
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Statistics/Distributions/Normal.html">Statistics::Distributions::Normal</a></li><li class="superclass"><a href="../../Statistics/Distributions/ContinuousDistribution.html">Statistics::Distributions::ContinuousDistribution</a></li><li class="superclass"><a href="../../Statistics/Distributions/Distribution.html">Statistics::Distributions::Distribution(Float64)</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Statistics/Distributions/ContinuousDistribution.html">Statistics::Distributions::ContinuousDistribution</a></li><li class="superclass"><a href="../../Statistics/Distributions/Distribution.html">Statistics::Distributions::Distribution(Float64)</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+
+
+
+
 
 
 
 
   <h2>
-    <a id="overview" class="anchor" href="#overview">
+    <a id="direct-known-subclasses" class="anchor" href="#direct-known-subclasses">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Overview
+    Direct Known Subclasses
   </h2>
-
-  <p>Represents a normal distribution.</p>
-
-<p>See <a href="https://en.wikipedia.org/wiki/Normal_distribution" target="_blank">wikipedia</a> for more details.</p>
-
-
-
-
-
-
-
-
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="../../Statistics/Distributions/Exponential.html">Statistics::Distributions::Exponential</a></li>
+    
+      <li class="other-type"><a href="../../Statistics/Distributions/Normal.html">Statistics::Distributions::Normal</a></li>
+    
+      <li class="other-type"><a href="../../Statistics/Distributions/Uniform.html">Statistics::Distributions::Uniform</a></li>
+    
+  </ul>
 
 
 
@@ -160,7 +165,7 @@
   </h2>
   
     
-      <a href="https://github.com/lbarasti/statistics/blob/420c1a706c1cab85e7c2a5f128c125a787149471/src/lib/distributions.cr#L81" target="_blank">
+      <a href="https://github.com/lbarasti/statistics/blob/420c1a706c1cab85e7c2a5f128c125a787149471/src/lib/distributions.cr#L14" target="_blank">
         lib/distributions.cr
       </a>
     
@@ -169,50 +174,7 @@
 
 
 
-  
-    <h2>
-      <a id="constant-summary" class="anchor" href="#constant-summary">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-      Constant Summary
-    </h2>
-  
-  <dl>
-    
-      <dt class="entry-const" id="PDF_COEFFICIENT">
-        <strong>PDF_COEFFICIENT</strong> = <code><span class="n">1</span> <span class="o">/</span> (<span class="t">Math</span>.sqrt(<span class="t">TWO_PI</span>))</code>
-      </dt>
-      
-    
-      <dt class="entry-const" id="TWO_PI">
-        <strong>TWO_PI</strong> = <code><span class="n">2</span> <span class="o">*</span> <span class="t">Math</span><span class="t">::</span><span class="t">PI</span></code>
-      </dt>
-      
-    
-  </dl>
 
-
-
-  <h2>
-    <a id="constructors" class="anchor" href="#constructors">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Constructors
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#new(mean:Float64=0,std:Float64=1)-class-method" class="signature"><strong>.new</strong>(mean : Float64 = <span class="n">0</span>, std : Float64 = <span class="n">1</span>)</a>
-        
-          <div class="summary"><p>Creates a normal distribution with the given <code>mean</code> and <code>std</code>.</p></div>
-        
-      </li>
-    
-  </ul>
 
 
 
@@ -235,13 +197,6 @@
         
       </li>
     
-      <li class="entry-summary">
-        <a href="#rand:Float64-instance-method" class="signature"><strong>#rand</strong> : Float64</a>
-        
-          <div class="summary"><p>Samples a random variable with the given distribution.</p></div>
-        
-      </li>
-    
   </ul>
 
 
@@ -249,25 +204,6 @@
 
 
 <div class="methods-inherited">
-  
-    
-
-  <h3>Instance methods inherited from class <code><a href="../../Statistics/Distributions/ContinuousDistribution.html">Statistics::Distributions::ContinuousDistribution</a></code></h3>
-  
-  
-    <a href="../../Statistics/Distributions/ContinuousDistribution.html#pdf(x)-instance-method" class="tooltip">
-      <span>pdf(x)</span>
-    pdf</a>
-    
-  
-
-
-    
-
-
-    
-
-
   
     
 
@@ -311,37 +247,6 @@
 </div>
 
 
-  <h2>
-    <a id="constructor-detail" class="anchor" href="#constructor-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Constructor Detail
-  </h2>
-  
-    <div class="entry-detail" id="new(mean:Float64=0,std:Float64=1)-class-method">
-      <div class="signature">
-        
-        def self.<strong>new</strong>(mean : Float64 = <span class="n">0</span>, std : Float64 = <span class="n">1</span>)
-
-        <a class="method-permalink" href="#new(mean:Float64=0,std:Float64=1)-class-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Creates a normal distribution with the given <code>mean</code> and <code>std</code>.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/lbarasti/statistics/blob/420c1a706c1cab85e7c2a5f128c125a787149471/src/lib/distributions.cr#L86" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-
 
 
 
@@ -357,17 +262,13 @@
   
     <div class="entry-detail" id="pdf(x)-instance-method">
       <div class="signature">
-        
+        abstract 
         def <strong>pdf</strong>(x)
 
         <a class="method-permalink" href="#pdf(x)-instance-method">#</a>
       </div>
       
         <div class="doc">
-          
-            <div class="doc-inherited">
-              Description copied from class <a href="../../Statistics/Distributions/ContinuousDistribution.html">Statistics::Distributions::ContinuousDistribution</a>
-            </div>
           
           <p>The Probability Density Function (PDF) of a continuous
 random variable.</p>
@@ -376,32 +277,7 @@ random variable.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/lbarasti/statistics/blob/420c1a706c1cab85e7c2a5f128c125a787149471/src/lib/distributions.cr#L89" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="rand:Float64-instance-method">
-      <div class="signature">
-        
-        def <strong>rand</strong> : Float64
-
-        <a class="method-permalink" href="#rand:Float64-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-            <div class="doc-inherited">
-              Description copied from class <a href="../../Statistics/Distributions/Distribution.html">Statistics::Distributions::Distribution(Float64)</a>
-            </div>
-          
-          <p>Samples a random variable with the given distribution.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/lbarasti/statistics/blob/420c1a706c1cab85e7c2a5f128c125a787149471/src/lib/distributions.cr#L94" target="_blank">View source</a>]
+          [<a href="https://github.com/lbarasti/statistics/blob/420c1a706c1cab85e7c2a5f128c125a787149471/src/lib/distributions.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>

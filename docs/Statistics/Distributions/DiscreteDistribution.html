@@ -15,7 +15,7 @@
 </svg>
 
   <meta id="repository-name" content="github.com/lbarasti/statistics">
-  <title>Statistics::Distributions::Distribution(T) - github.com/lbarasti/statistics</title>
+  <title>Statistics::Distributions::DiscreteDistribution(T) - github.com/lbarasti/statistics</title>
   <script type="text/javascript">
     CrystalDoc.base_path = "../../";
   </script>
@@ -65,12 +65,12 @@
       
     </li>
   
-  <li class=" " data-id="github.com/lbarasti/statistics/Statistics/Distributions/DiscreteDistribution" data-name="statistics::distributions::discretedistribution(t)">
+  <li class=" current" data-id="github.com/lbarasti/statistics/Statistics/Distributions/DiscreteDistribution" data-name="statistics::distributions::discretedistribution(t)">
       <a href="../../Statistics/Distributions/DiscreteDistribution.html">DiscreteDistribution</a>
       
     </li>
   
-  <li class=" current" data-id="github.com/lbarasti/statistics/Statistics/Distributions/Distribution" data-name="statistics::distributions::distribution(t)">
+  <li class=" " data-id="github.com/lbarasti/statistics/Statistics/Distributions/Distribution" data-name="statistics::distributions::distribution(t)">
       <a href="../../Statistics/Distributions/Distribution.html">Distribution</a>
       
     </li>
@@ -114,12 +114,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">abstract class</span> Statistics::Distributions::Distribution(T)
+  <span class="kind">abstract class</span> Statistics::Distributions::DiscreteDistribution(T)
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Statistics/Distributions/Distribution.html">Statistics::Distributions::Distribution(T)</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Statistics/Distributions/DiscreteDistribution.html">Statistics::Distributions::DiscreteDistribution(T)</a></li><li class="superclass"><a href="../../Statistics/Distributions/Distribution.html">Statistics::Distributions::Distribution(T)</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -142,9 +142,11 @@
   </h2>
   <ul class="other-types-list">
     
-      <li class="other-type"><a href="../../Statistics/Distributions/ContinuousDistribution.html">Statistics::Distributions::ContinuousDistribution</a></li>
+      <li class="other-type"><a href="../../Statistics/Distributions/Bernoulli.html">Statistics::Distributions::Bernoulli</a></li>
     
-      <li class="other-type"><a href="../../Statistics/Distributions/DiscreteDistribution.html">Statistics::Distributions::DiscreteDistribution(T)</a></li>
+      <li class="other-type"><a href="../../Statistics/Distributions/Constant.html">Statistics::Distributions::Constant</a></li>
+    
+      <li class="other-type"><a href="../../Statistics/Distributions/Poisson.html">Statistics::Distributions::Poisson</a></li>
     
   </ul>
 
@@ -163,7 +165,7 @@
   </h2>
   
     
-      <a href="https://github.com/lbarasti/statistics/blob/420c1a706c1cab85e7c2a5f128c125a787149471/src/lib/distributions.cr#L3" target="_blank">
+      <a href="https://github.com/lbarasti/statistics/blob/420c1a706c1cab85e7c2a5f128c125a787149471/src/lib/distributions.cr#L8" target="_blank">
         lib/distributions.cr
       </a>
     
@@ -189,9 +191,9 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#rand:T-instance-method" class="signature"><strong>#rand</strong> : T</a>
+        <a href="#pmf(x)-instance-method" class="signature"><strong>#pmf</strong>(x)</a>
         
-          <div class="summary"><p>Samples a random variable with the given distribution.</p></div>
+          <div class="summary"><p>The Probability Mass Function (PMF) of a discrete random variable.</p></div>
         
       </li>
     
@@ -202,6 +204,25 @@
 
 
 <div class="methods-inherited">
+  
+    
+
+  <h3>Instance methods inherited from class <code><a href="../../Statistics/Distributions/Distribution.html">Statistics::Distributions::Distribution(T)</a></code></h3>
+  
+  
+    <a href="../../Statistics/Distributions/Distribution.html#rand:T-instance-method" class="tooltip">
+      <span>rand : T</span>
+    rand</a>
+    
+  
+
+
+    
+
+
+    
+
+
   
     
 
@@ -239,23 +260,24 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="rand:T-instance-method">
+    <div class="entry-detail" id="pmf(x)-instance-method">
       <div class="signature">
         abstract 
-        def <strong>rand</strong> : T
+        def <strong>pmf</strong>(x)
 
-        <a class="method-permalink" href="#rand:T-instance-method">#</a>
+        <a class="method-permalink" href="#pmf(x)-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Samples a random variable with the given distribution.</p>
+          <p>The Probability Mass Function (PMF) of a discrete
+random variable.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/lbarasti/statistics/blob/420c1a706c1cab85e7c2a5f128c125a787149471/src/lib/distributions.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/lbarasti/statistics/blob/420c1a706c1cab85e7c2a5f128c125a787149471/src/lib/distributions.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
