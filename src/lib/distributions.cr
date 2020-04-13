@@ -5,9 +5,25 @@ module Statistics
       abstract def rand : T
     end
 
+    abstract class DiscreteDistribution(T) < Distribution(T)
+      # The Probability Mass Function (PMF) of a discrete
+      # random variable.
+      abstract def pmf(x)
+    end
+
+    abstract class ContinuousDistribution < Distribution(Float64)
+      # The Probability Density Function (PDF) of a continuous
+      # random variable.
+      abstract def pdf(x)
+    end
+
     # Represents a deterministic distribution taking a single value.
-    class Constant < Distribution(Float64)
+    class Constant < DiscreteDistribution(Float64)
       getter rand : Float64
+
+      def pmf(x)
+        x == @rand ? 1.0 : 0.0
+      end
 
       # Creates a degenerate distribution which only takes the value `k`.
       def initialize(k @rand : Float64)
@@ -19,9 +35,15 @@ module Statistics
     # and independently at a constant average rate.
     #
     # See [wikipedia](https://en.wikipedia.org/wiki/Exponential_distribution) for more details.
-    class Exponential < Distribution(Float64)
+    class Exponential < ContinuousDistribution
       # Creates an exponential distribution with a rate parameter `lambda`.
       def initialize(@lambda : Float64)
+      end
+
+      def pdf(x)
+        return 0.0 if x < 0
+        # \lambda e^{{-\lambda x}}
+        @lambda * Math.exp(-@lambda * x)
       end
 
       def rand : Float64
@@ -35,11 +57,17 @@ module Statistics
     # Represents a normal distribution.
     #
     # See [wikipedia](https://en.wikipedia.org/wiki/Normal_distribution) for more details.
-    class Normal < Distribution(Float64)
-      TWO_PI = 2 * Math::PI
+    class Normal < ContinuousDistribution
+      TWO_PI          = 2 * Math::PI
+      PDF_COEFFICIENT = 1 / Math.sqrt(TWO_PI)
 
       # Creates a normal distribution with the given `mean` and `std`.
-      def initialize(@mean : Float64, @std : Float64)
+      def initialize(@mean : Float64 = 0, @std : Float64 = 1)
+      end
+
+      def pdf(x)
+        exponent = -0.5 * ((x - @mean) / @std)**2
+        PDF_COEFFICIENT / @std * Math.exp(exponent)
       end
 
       def rand : Float64
@@ -55,9 +83,19 @@ module Statistics
     # fixed interval of time or space if these events occur with a
     # known constant mean rate and independently of the time since
     # the last event (source: [wikipedia](https://en.wikipedia.org/wiki/Poisson_distribution))
-    class Poisson < Distribution(Int32)
+    class Poisson < DiscreteDistribution(Int32)
       # Creates a Poisson distribution with expected value `lambda`.
       def initialize(@lambda : Float64)
+      end
+
+      def pmf(x)
+        return 0.0 if x - x.round(0) != 0
+        return 0.0 if x < 0
+        acc = 1
+        x.to_i.times { |i|
+          acc = acc * @lambda / (i + 1)
+        }
+        acc * Math.exp(-@lambda)
       end
 
       def rand : Int32
@@ -81,12 +119,20 @@ module Statistics
     # Represents a continuous uniform distribution.
     #
     # See [wikipedia](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous).
-    class Uniform < Distribution(Float64)
+    class Uniform < ContinuousDistribution
       @interval : Float64
 
       # Creates a uniform distribution within the interval [`min`, `max`].
-      def initialize(@min : Float64, max : Float64)
-        @interval = max - @min
+      def initialize(@min : Float64, @max : Float64)
+        @interval = @max - @min
+      end
+
+      def pdf(x)
+        if @min <= x && x <= @max
+          1 / @interval
+        else
+          0.0
+        end
       end
 
       def rand : Float64

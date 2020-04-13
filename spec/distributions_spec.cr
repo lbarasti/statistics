@@ -17,6 +17,13 @@ describe Constant do
     skew(values).nan?.should be_true
     kurtosis(values).nan?.should be_true
   end
+
+  it "computes the pmf for a given `x`" do
+    c = Constant.new(k = rand * 10)
+    c.pmf(k).should eq 1
+    c.pmf(k + 10 * rand).should eq 0
+    c.pmf(k - 10 * rand).should eq 0
+  end
 end
 
 describe Exponential do
@@ -33,6 +40,14 @@ describe Exponential do
     (var(values) / expected[:variance]).should be_close(1, tolerance*2)
     (skew(values) / expected[:skewness]).should be_close(1, tolerance*3)
     (kurtosis(values, excess: true) / expected[:kurtosis]).should be_close(1, tolerance*4)
+  end
+
+  it "computes the pdf for a given `x`" do
+    lambda = rand * 2
+    e = Exponential.new(lambda)
+    e.pdf(-rand).should eq 0.0
+    e.pdf(0).should eq lambda
+    e.pdf(1 / lambda).should be_close(lambda / Math::E, 1e-8)
   end
 end
 
@@ -51,6 +66,21 @@ describe Normal do
     skew(values).should be_close(expected[:skewness], tolerance)
     kurtosis(values, excess: true).should be_close(expected[:kurtosis], tolerance*2)
   end
+
+  it "computes the pdf for a given `x`" do
+    # https://en.wikipedia.org/wiki/Normal_distribution#Numerical_approximations_for_the_normal_CDF
+    # see also https://www.ijser.org/researchpaper/Approximations-to-Standard-Normal-Distribution-Function.pdf
+    n = Normal.new
+    b0 = 0.2316419; b1 = 0.319381530; b2 = -0.356563782; b3 = 1.781477937; b4 = -1.821255978; b5 = 1.330274429
+
+    cum = ->(x : Float64) {
+      t = 1 / (1 + b0 * x)
+      1 - n.pdf(x) * (b1 * t + b2 * t**2 + b3 * t**3 + b4 * t**4 + b5 * t**5)
+    }
+    cum.call(0.0).should be_close 0.5, 10e-5
+    (cum.call(1.0) - (1 - cum.call(1.0))).should be_close 0.6827, 10e-5
+    cum.call(0.6745).should be_close 0.75, 10e-5
+  end
 end
 
 describe Poisson do
@@ -67,6 +97,20 @@ describe Poisson do
     (var(values) / expected[:variance]).should be_close(1, tolerance)
     (skew(values) / expected[:skewness]).should be_close(1, tolerance*2)
     (kurtosis(values, excess: true) / expected[:kurtosis]).should be_close(1, tolerance*4)
+  end
+
+  it "computes the pmf for a given `x`" do
+    Poisson.new(1).pmf(1).should be_close 0.36, 0.01
+    Poisson.new(1).pmf(0).should eq Poisson.new(1).pmf(1)
+    Poisson.new(1).pmf(25).should be_close 0, 1e-16
+
+    Poisson.new(4).pmf(4).should eq Poisson.new(4).pmf(3)
+    Poisson.new(4).pmf(4).should be_close 0.19, 0.01
+    (Poisson.new(4).pmf(1) < 0.08).should be_true
+
+    # pmf outside of Poisson's support
+    Poisson.new(1).pmf(0.8).should eq 0
+    Poisson.new(1).pmf(-2).should eq 0
   end
 end
 
@@ -90,5 +134,13 @@ describe Uniform do
     (var(values) / expected[:variance]).should be_close(1, tolerance)
     skew(values).should be_close(expected[:skewness], tolerance)
     (kurtosis(values, excess: true) / expected[:kurtosis]).should be_close(1, tolerance)
+  end
+
+  it "computes the pdf for a given `x`" do
+    min, max = rand, rand + 1
+    u = Uniform.new(min, max)
+    u.pdf(u.rand).should eq 1 / (max - min)
+    u.pdf(min - rand).should eq 0.0
+    u.pdf(max + rand).should eq 0.0
   end
 end

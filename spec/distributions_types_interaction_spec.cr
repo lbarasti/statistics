@@ -4,7 +4,7 @@ include Statistics::Distributions
 
 # A function taking an argument of type `Distribution`,
 # with no explicit type parameter `T`
-def f(d : Distribution)
+def f(d : Distribution(T)) forall T
   d.rand
 end
 
@@ -29,9 +29,19 @@ describe Distribution do
   end
 
   it "supports defining functions with parameter of type
-      `Distribution`, with no explicit type parameter `T`" do
+      `Distribution(T)`, for all `T`" do
     f(Normal.new(0.2, 0.5))
 
     f(Poisson.new(0.5))
+  end
+
+  it "resolves #pdf calls for `ContinuousDistribution` types" do
+    gen = rand < 0.5 ? Normal.new(0.2, 0.5) : Uniform.new(0.2, 0.5)
+    gen.pdf(rand) # compiles
+  end
+
+  it "resolves #pmf calls for `DiscreteDistribution` types" do
+    gen = rand < 0.5 ? Poisson.new(1) : Constant.new(0.2)
+    gen.pmf(rand) # compiles
   end
 end
