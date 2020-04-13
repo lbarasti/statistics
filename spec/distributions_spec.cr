@@ -17,6 +17,13 @@ describe Constant do
     skew(values).nan?.should be_true
     kurtosis(values).nan?.should be_true
   end
+
+  it "computes the pmf for a given `x`" do
+    c = Constant.new(k = rand * 10)
+    c.pmf(k).should eq 1
+    c.pmf(k + 10 * rand).should eq 0
+    c.pmf(k - 10 * rand).should eq 0
+  end
 end
 
 describe Exponential do
@@ -33,6 +40,14 @@ describe Exponential do
     (var(values) / expected[:variance]).should be_close(1, tolerance*2)
     (skew(values) / expected[:skewness]).should be_close(1, tolerance*3)
     (kurtosis(values, excess: true) / expected[:kurtosis]).should be_close(1, tolerance*4)
+  end
+
+  it "computes the pdf for a given `x`" do
+    lambda = rand * 2
+    e = Exponential.new(lambda)
+    e.pdf(-rand).should eq 0.0
+    e.pdf(0).should eq lambda
+    e.pdf(1 / lambda).should be_close(lambda / Math::E, 1e-8)
   end
 end
 
@@ -83,6 +98,20 @@ describe Poisson do
     (skew(values) / expected[:skewness]).should be_close(1, tolerance*2)
     (kurtosis(values, excess: true) / expected[:kurtosis]).should be_close(1, tolerance*4)
   end
+
+  it "computes the pmf for a given `x`" do
+    Poisson.new(1).pmf(1).should be_close 0.36, 0.01
+    Poisson.new(1).pmf(0).should eq Poisson.new(1).pmf(1)
+    Poisson.new(1).pmf(25).should be_close 0, 1e-16
+
+    Poisson.new(4).pmf(4).should eq Poisson.new(4).pmf(3)
+    Poisson.new(4).pmf(4).should be_close 0.19, 0.01
+    (Poisson.new(4).pmf(1) < 0.08).should be_true
+
+    # pmf outside of Poisson's support
+    Poisson.new(1).pmf(0.8).should eq 0
+    Poisson.new(1).pmf(-2).should eq 0
+  end
 end
 
 describe Uniform do
@@ -105,5 +134,13 @@ describe Uniform do
     (var(values) / expected[:variance]).should be_close(1, tolerance)
     skew(values).should be_close(expected[:skewness], tolerance)
     (kurtosis(values, excess: true) / expected[:kurtosis]).should be_close(1, tolerance)
+  end
+
+  it "computes the pdf for a given `x`" do
+    min, max = rand, rand + 1
+    u = Uniform.new(min, max)
+    u.pdf(u.rand).should eq 1 / (max - min)
+    u.pdf(min - rand).should eq 0.0
+    u.pdf(max + rand).should eq 0.0
   end
 end
