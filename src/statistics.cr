@@ -79,18 +79,18 @@ module Statistics
 
       counter[idx] += 1
     }
-    edges = Array.new(bins){ |i| min + i * step }
+    edges = Array.new(bins) { |i| min + i * step }
 
     adjusted_edges = case edge
-    when .left?
-      edges
-    when .centre?
-      edges.map(&.+(step / 2))
-    when .right?
-      edges.map(&.+(step))
-    else
-      raise ArgumentError.new("Unexpected value")
-    end
+                     when .left?
+                       edges
+                     when .centre?
+                       edges.map(&.+(step / 2))
+                     when .right?
+                       edges.map(&.+(step))
+                     else
+                       raise ArgumentError.new("Unexpected value")
+                     end
     Bins.new edges: adjusted_edges, counts: counter, step: step
   end
 

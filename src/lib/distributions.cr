@@ -17,6 +17,27 @@ module Statistics
       abstract def pdf(x)
     end
 
+    # The discrete probability distribution of a random variable which takes
+    # the value 1 with probability `p` and the value 0 with probability
+    # `q=1-p` (source: [wikipedia](https://en.wikipedia.org/wiki/Bernoulli_distribution)).
+    class Bernoulli < DiscreteDistribution(Int32)
+      # Creates Bernoulli distribution with success rate `p`.
+      def initialize(@p : Float64)
+      end
+
+      def pmf(x)
+        case x
+        when 1 then @p
+        when 0 then 1 - @p
+        else        0
+        end
+      end
+
+      def rand : Int32
+        ::rand <= @p ? 1 : 0
+      end
+    end
+
     # Represents a deterministic distribution taking a single value.
     class Constant < DiscreteDistribution(Float64)
       getter rand : Float64

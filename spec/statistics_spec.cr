@@ -131,12 +131,12 @@ describe Statistics do
     it "supports specifying which edge point should be returned" do
       bins = 5
       step = (sample.max - sample.min) / bins
-      
+
       left = bin_count(sample, bins, edge: :left).edges
       centre = bin_count(sample, bins, edge: :centre).edges
       right = bin_count(sample, bins, edge: :right).edges
-      left.zip(centre).each { |l,c| (l - c + step / 2).should be_close 0, 1e-15}
-      left.zip(right).each { |l,r| (l - r + step).should be_close 0, 1e-15}
+      left.zip(centre).each { |l, c| (l - c + step / 2).should be_close 0, 1e-15 }
+      left.zip(right).each { |l, r| (l - r + step).should be_close 0, 1e-15 }
     end
   end
 end

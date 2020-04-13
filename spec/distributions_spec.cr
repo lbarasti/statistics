@@ -5,6 +5,33 @@ include Statistics::Distributions
 tolerance = 0.05 # TODO: adjust this to avoid intermittent failures
 sample_size = 100000
 
+describe Bernoulli do
+  p = 0.8
+  q = 1 - p
+  gen = Bernoulli.new(p)
+
+  it "returns a success with probability `p`" do
+    expected = {
+      mean: p, variance: p * q, skewness: (q - p) / Math.sqrt(p * q), kurtosis: (1 - 6 * p * q) / (p * q),
+    }
+
+    values = sample_size.times.map { gen.rand }.to_a.sort
+
+    (mean(values) / expected[:mean]).should be_close(1, tolerance)
+    (var(values) / expected[:variance]).should be_close(1, tolerance)
+    (skew(values) / expected[:skewness]).should be_close(1, tolerance*2)
+    (kurtosis(values, excess: true) / expected[:kurtosis]).should be_close(1, tolerance*4)
+  end
+
+  it "computes the pmf for a given `x`" do
+    gen.pmf(0).should eq q
+    gen.pmf(1).should eq p
+    gen.pmf(rand).should eq 0
+    gen.pmf(rand + 1).should eq 0
+    gen.pmf(-rand).should eq 0
+  end
+end
+
 describe Constant do
   it "generates the given number, over and over again" do
     const = 3.5
