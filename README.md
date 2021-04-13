@@ -1,6 +1,7 @@
 [![GitHub release](https://img.shields.io/github/release/lbarasti/statistics.svg)](https://github.com/lbarasti/statistics/releases)
 ![Build Status](https://github.com/lbarasti/statistics/workflows/build/badge.svg)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Docs](https://img.shields.io/badge/docs-available-brightgreen.svg)](https://lbarasti.github.io/statistics)
 
 # statistics
 
@@ -8,7 +9,7 @@ A statistical library to perform descriptive statistics and generate random valu
 
 ## Installation
 
-1. Add the dependency to your `shard.yml`:
+Add the dependency to your `shard.yml`:
 
 ```yaml
 dependencies:
@@ -16,7 +17,7 @@ dependencies:
     github: lbarasti/statistics
 ```
 
-2. Run `shards install`
+Run `shards install`
 
 ## Usage
 

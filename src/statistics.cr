@@ -5,7 +5,7 @@ require "./lib/distributions"
 # More flexible than a scientific-calculator, but not as exhaustive, yet.
 module Statistics
   extend self
-  VERSION = "1.0.0"
+  VERSION = "1.0.1"
 
   # Computes several descriptive statistics of the passed array.
   #
@@ -49,7 +49,7 @@ module Statistics
   end
 
   # Bin edges, counts and step. Returned by `#bin_count`
-  private record Bins, edges : Array(Float64), counts : Array(Int32), step : Float64
+  private record Bins, edges : Array(Float64), counts : Array(Int32) | Array(Float64), step : Float64
 
   # Counts the number of values in each bin of size `(max - min) / bins`.
   #
@@ -64,7 +64,9 @@ module Statistics
   # - max: the right end of the last bin's edge. If none is provided, then `values.max` is used.
   # - edge: determines whether the left edge of the bin, its mid-point or right edge should be returned.
   #   Choices are `:left`, `:centre` and `:right`. Default is `:left`.
-  def bin_count(values : Enumerable, bins : Int32, min = nil, max = nil, edge : Edge = :left) : Bins
+  # - normed : bool, optional
+  #   If False, the result will contain the number of samples in each bin. If True, the result is the value of the probability density function at the bin, normalized such that the integral over the range is 1. Note that the sum of the histogram values will not be equal to 1 unless bins of unity width are chosen; it is not a probability mass function.
+  def bin_count(values : Enumerable, bins : Int32, min = nil, max = nil, edge : Edge = :left, normed : Bool = false) : Bins
     if min.nil? || max.nil?
       sample_min, sample_max = values.minmax
       min = sample_min if min.nil?
@@ -73,6 +75,7 @@ module Statistics
 
     counter = Array(Int32).new(size: bins, value: 0)
     step = (max - min) / bins
+    size = values.size
 
     values.each { |v|
       idx = v == max ? bins - 1 : ((v - min) / step).floor.to_i
@@ -88,10 +91,10 @@ module Statistics
                        edges.map(&.+(step / 2))
                      when .right?
                        edges.map(&.+(step))
-                     else
-                       raise ArgumentError.new("Unexpected value")
-                     end
-    Bins.new edges: adjusted_edges, counts: counter, step: step
+                     end.not_nil!
+    adjusted_counts = normed ? counter.map { |c| c / size / step } : counter
+
+    Bins.new edges: adjusted_edges, counts: adjusted_counts, step: step
   end
 
   # Computes the kurtosis of a dataset.

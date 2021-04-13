@@ -1,9 +1,9 @@
 name: statistics
-version: 1.0.0
+version: 1.0.1
 
 authors:
   - lbarasti <lbarasti@users.noreply.github.com>
 
-crystal: 0.34.0
+crystal: ">= 0.34.0"
 
 license: MIT
